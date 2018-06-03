@@ -1,0 +1,77 @@
+image: flyskywhy/rn-nodejs:v6.11.1
+
+# Pick zero or more services to be used on all builds.
+# Only needed when using a docker container to run your tests in.
+# Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
+.services:
+  - mysql:latest
+  - redis:latest
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+    - public/
+#    - android/app/build/
+
+before_script:
+  - export YARN_CACHE_FOLDER=/cache/yarn
+  - export NPM_CONFIG_CACHE=/cache/npm
+  - export GRADLE_USER_HOME=/cache/gradle
+  - export ANDROID_SDK_HOME=/cache/android
+  - export ANDROID_HOME=/cache/opt/android-sdk
+  - export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+  # 如下 sdkmanager 语句不知为何会导致 "ERROR: Job failed: exit code 1" ，所以将其藏到了 docker-before-script.sh 中
+  # - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+  - /cache/docker-before-script.sh
+
+  - npm update --unsafe-perm
+  - npm run postinstall
+  #- npm install --global mocha
+  #- mkdir -p log && cd log && touch access.log && touch error.log && cd ..
+
+stages:
+  - build
+  - test
+  - deploy
+
+.build:
+  stage: build
+  script: echo "Building the app"
+
+.test:
+  stage: test
+  script: echo "Running tests"
+
+deploy_web_app_srv:
+  stage: deploy
+  tags:
+    - react-native
+  script:
+    - rm -f public/bundle.js public/index.html
+    - npm run build-web
+    - if [ -f public/bundle.js ]; then true; else false; fi
+    - export YP_GIT_HASH=`git rev-parse --short HEAD`
+    - sed -i "s/bundle.js/bundle.js?v=$YP_GIT_HASH/" public/index.html
+
+    - cp instances/config.example.js instances/config.js
+    - sed -i "s/DB_USERNAME/$DB_USERNAME/" instances/config.js
+    - sed -i "s/DB_PWD/$DB_PWD/" instances/config.js
+    - sed -i "s/DB_HOST/$DB_HOST/" instances/config.js
+    - sed -i "s/DB_PORT/$DB_PORT/" instances/config.js
+    - sed -i "s/DB_DATABASE/$DB_DATABASE/" instances/config.js
+    - sed -i "s/REDIS_HOST/$REDIS_HOST/" instances/config.js
+    - sed -i "s/REDIS_PORT/$REDIS_PORT/" instances/config.js
+    - sed -i "s/REDIS_PWD/$REDIS_PWD/" instances/config.js
+    - sed -i "s/ALIDAYU_ACCESSKEYID/$ALIDAYU_ACCESSKEYID/" instances/config.js
+    - sed -i "s/ALIYUN_OSS_ACCESSKEYSECRET/$ALIYUN_OSS_ACCESSKEYSECRET/" instances/config.js
+    - sed -i "s/ALIYUN_MTS_CFG_ACCESSKEYID/$ALIYUN_MTS_CFG_ACCESSKEYID/" instances/config.js
+    - sed -i "s/ALIYUN_MTS_CFG_SECRETACCESSKEY/$ALIYUN_MTS_CFG_SECRETACCESSKEY/" instances/config.js
+    - sshpass -p $SRV_PWD rsync -avzq ./ -e 'ssh -o StrictHostKeyChecking=no' $SRV_USER@$SRV1_ADDR:~/$SRC_PATH/
+    - sshpass -p $SRV_PWD rsync -avzq --delete-after --exclude-from=.gitignore ./ -e 'ssh -o StrictHostKeyChecking=no' $SRV_USER@$SRV1_ADDR:~/$SRC_PATH/
+    - sshpass -p $SRV_PWD ssh -o StrictHostKeyChecking=no $SRV_USER@$SRV1_ADDR ". .profile && cd ~/$SRC_PATH/
+     && pm2 stop scripts/pm2.config.js && node ./models/migrate.js && pm2 start scripts/pm2.config.js"
+  only:
+    - master

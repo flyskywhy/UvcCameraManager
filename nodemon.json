@@ -1,0 +1,9 @@
+{
+  "ignore": [
+      "log",
+      "node_modules",
+      "public",
+      "test"
+  ],
+  "ext": "js"
+}

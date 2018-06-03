@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title>ReactWebNative8Koa app下载／快捷发布</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+  content="width=device-width,device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<style type="text/css">
+* {
+  margin: 0;
+  padding: 0;
+  background: #F2F2F2;
+  /*overflow:hidden;*/
+}
+
+#lkAndroid {
+  display: block;
+  width: 100%;
+  height: 65px;
+  color: White;
+  text-decoration: none;
+  text-align: center;
+  line-height: 65px;
+  background-color: #17853B;
+}
+
+#lkAndroid:hover {
+  background-color: #147634;
+}
+
+#lkIphone {
+  display: block;
+  width: 100%;
+  height: 65px;
+  color: White;
+  text-decoration: none;
+  text-align: center;
+  line-height: 65px;
+  background-color: #52BFDB;
+}
+
+#lkIphone:hover {
+  background-color: #2C8FA9;
+}
+</style>
+<script type="text/javascript">
+        function Download(obj) {
+            location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.ReactWebNative8Koa";
+        }
+
+        function Public(obj) {
+          var ua = window.navigator.userAgent.toLowerCase();
+          var isAliPay = /alipayclient/i.test(ua);
+          var isWeiXin = /MicroMessenger/i.test(ua);
+          var id2 = GetQueryString('id2');
+          if (isAliPay) {
+              location.href =  location.origin + '/api/v0001/alipayLogin?' + 'id2=' + id2;
+          }else if (isWeiXin) {
+              location.href =  location.origin + '/api/v0001/wxLogin?' + 'id2=' + id2;
+          } else{
+              alert('快捷发布，请使用支付宝或者微信扫码');
+          }
+
+        }
+
+        function GetQueryString(name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+          var r = window.location.search.substr(1).match(reg);
+          if (r !== null) {
+              return unescape(r[2]);
+          }
+          return null;
+        }
+
+</script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-role="content">
+      <form id="form1" runat="server">
+        <div style="text-align: center;">
+          <div style="margin-top: 10px;">
+            <img src="icon.jpg" alt="" />
+          </div>
+          <div id="downloadBtn"
+            style="width: 100%;overflow:hidden;padding-left:5px;
+            padding-right:5px;">
+            <div style="width: 49%; margin: 40px auto; font-size: 18px;">
+              <asp:HyperLink ID="lkAndroid" runat="server" NavigateUrl=""
+                onclick="Download(this)">APP下载</asp:HyperLink>
+            </div>
+            <div style="width: 48%; margin: 40px auto; font-size: 18px;">
+              <asp:HyperLink ID="lkIphone" runat="server" NavigateUrl=""
+                onclick="Public(this)">快捷发布</asp:HyperLink>
+            </div>
+          </div>
+          <div style="width: 100%; margin: 30px auto; font-size: 18px">
+            欢迎您访问我们的网站
+            <div style="margin-top: 20px;">https://ReactWebNative8Koa.com</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
