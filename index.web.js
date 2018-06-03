@@ -4,14 +4,14 @@ import 'fetch-ie8';
 import {
     AppRegistry
 } from 'react-native';
-import ReactWebNative8Koa from './app/';
+import UvcCameraManager from './app/';
 
 
-AppRegistry.registerComponent('ReactWebNative8Koa', () => ReactWebNative8Koa);
+AppRegistry.registerComponent('UvcCameraManager', () => UvcCameraManager);
 
 var app = document.createElement('div');
 document.body.appendChild(app);
 
-AppRegistry.runApplication('ReactWebNative8Koa', {
+AppRegistry.runApplication('UvcCameraManager', {
     rootTag: app
 });

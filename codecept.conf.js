@@ -56,5 +56,5 @@ exports.config = {
     hooks: [],
     tests: CODECEPT_WORK_PATH + '/tests/*.js',
     timeout: 10000,
-    name: 'ReactWebNative8Koa'
+    name: 'UvcCameraManager'
 };

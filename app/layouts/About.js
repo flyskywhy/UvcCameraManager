@@ -58,7 +58,7 @@ class About extends PureComponent {
                     <Nav navs={this.navs}/>
                     <View style={styles.content}>
                         <Text style={styles.title}>
-                            ReactWebNative8Koa
+                            UvcCameraManager
                             <Text
                                 style={styles.versionText}>
                                 {' v' + config.package.version}
@@ -71,7 +71,7 @@ class About extends PureComponent {
                             </Text>
                         </Text>
                         <Text style={styles.subTitle}>
-                            ReactWebNative8Koa
+                            UvcCameraManager
                         </Text>
                         <Text style={styles.subTitle}>
                             {this.state.backendVer}

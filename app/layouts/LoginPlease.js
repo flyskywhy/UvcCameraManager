@@ -56,7 +56,7 @@ class LoginPlease extends PureComponent {
         return (
             <View style={styles.container}>
                 <Text style={styles.versionText}>
-                    ReactWebNative8Koa v{config.package.version}
+                    UvcCameraManager v{config.package.version}
                 </Text>
                 {Platform.OS !== 'web' && (__DEV__ || this.props.addrChangeable) && (
                     <View>
