@@ -97,6 +97,9 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    dexOptions {
+        jumboMode true
+    }
     defaultConfig {
         applicationId "com.uvccameramanager"
         minSdkVersion 16
@@ -116,10 +119,19 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file(UvcCameraManager_RELEASE_STORE_FILE)
+            storePassword UvcCameraManager_RELEASE_STORE_PASSWORD
+            keyAlias UvcCameraManager_RELEASE_KEY_ALIAS
+            keyPassword UvcCameraManager_RELEASE_KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
