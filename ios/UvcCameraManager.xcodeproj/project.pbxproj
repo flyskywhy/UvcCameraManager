@@ -39,6 +39,7 @@
 		85AE96DC9A954705BFAB0A91 /* libRCTBarcode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD6448C4D07342D5AAAB7A70 /* libRCTBarcode.a */; };
 		0C0442BD5EA14FCAB26BBCE2 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9310F8D0DC4A2D8A95CC19 /* libReactNativePermissions.a */; };
 		050E46478CCF43978B0C97AA /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05500D8A9F8D49CFA3D04324 /* libRNCamera.a */; };
+		6F44DC266A794752A4AA8175 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E61EC6642274490E89530F40 /* libimageCropPicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,8 @@
 		9B9310F8D0DC4A2D8A95CC19 /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		565E35CC858D4EDAB1E1BA5B /* RNCamera.xcodeproj */ = {isa = PBXFileReference; name = "RNCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		05500D8A9F8D49CFA3D04324 /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6224EBC6D71C4FA59B739B97 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E61EC6642274490E89530F40 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +306,7 @@
 				85AE96DC9A954705BFAB0A91 /* libRCTBarcode.a in Frameworks */,
 				0C0442BD5EA14FCAB26BBCE2 /* libReactNativePermissions.a in Frameworks */,
 				050E46478CCF43978B0C97AA /* libRNCamera.a in Frameworks */,
+				6F44DC266A794752A4AA8175 /* libimageCropPicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +478,7 @@
 				AAC285E0F8B146E186452A2D /* RCTBarCode.xcodeproj */,
 				85695AA7494B4B5F8EB588F6 /* ReactNativePermissions.xcodeproj */,
 				565E35CC858D4EDAB1E1BA5B /* RNCamera.xcodeproj */,
+				6224EBC6D71C4FA59B739B97 /* imageCropPicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1024,12 +1029,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1053,12 +1060,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1083,6 +1092,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1106,6 +1116,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1138,12 +1149,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Debug;
@@ -1176,12 +1189,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-smart-barcode\ios\RCTBarcode\RCTBarcode",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
 					"$(SRCROOT)\..\node_modules\react-native-camera\ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 				);
 			};
 			name = Release;
@@ -1209,6 +1224,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1233,6 +1249,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

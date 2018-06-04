@@ -137,6 +137,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-image-crop-picker')
     def supportLibVersion = rootProject.hasProperty('supportLibVersion')  ? rootProject.supportLibVersion : "27.1.0"
 
     compile project(':react-native-camera')
