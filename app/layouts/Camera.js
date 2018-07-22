@@ -36,6 +36,9 @@ class Camera extends PureComponent {
                 onPress: this.pickPicture
             },
         };
+        this.state = {
+            isRecording: false,
+        };
     }
 
     pickPicture = () => {
@@ -60,6 +63,23 @@ class Camera extends PureComponent {
         }
     };
 
+    record = async () => {
+        if (this.camera) {
+            if (this.state.isRecording) {
+                this.camera.stopRecording();
+            } else {
+                this.setState({
+                    isRecording: true,
+                });
+                const data = await this.camera.recordAsync();
+                this.setState({
+                    isRecording: false,
+                });
+                console.warn(data.uri);
+            }
+        }
+    };
+
     refCamera = view => {
         this.camera = view;
     }
@@ -78,9 +98,14 @@ class Camera extends PureComponent {
                         permissionDialogMessage={'We need your permission to use your camera phone'}
                     />
                     }
-                    <TouchableOpacity style={styles.captureButton} onPress={this.takePicture}>
-                        <Text style={styles.captureText}> Take a picture </Text>
-                    </TouchableOpacity>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={this.takePicture}>
+                            <Text style={styles.buttonText}> Take a picture </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.button, {backgroundColor: this.state.isRecording ? 'red' : 'blue'}]} onPress={this.record}>
+                            <Text style={styles.buttonText}> {this.state.isRecording ? 'Recording' : 'Record stopped'} </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
@@ -96,12 +121,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
-    captureButton: {
-        backgroundColor: 'green',
+    buttonContainer: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
     },
-    captureText: {
+    button: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    buttonText: {
         color: 'white',
-        fontSize: 30,
+        fontSize: 23,
     },
 });
 
