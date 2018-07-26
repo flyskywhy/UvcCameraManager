@@ -1,4 +1,6 @@
 rootProject.name = 'UvcCameraManager'
+include ':react-native-uvc-camera'
+project(':react-native-uvc-camera').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uvc-camera/android')
 include ':usbCameraCommon'
 project(':usbCameraCommon').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uvc-camera/usbCameraCommon')
 include ':libuvccamera'

@@ -12,8 +12,8 @@ import {
 
 if (Platform.OS !== 'web') {
     var {
-        RNCamera,
-    } = require('react-native-camera');
+        UvcCamera,
+    } = require('react-native-uvc-camera');
 }
 
 import ImagePicker from 'react-native-image-crop-picker';
@@ -70,10 +70,10 @@ class Camera extends PureComponent {
                 <Nav navs={this.navs}/>
                 <View style={styles.container}>
                     {Platform.OS === 'web' ? <View style= {styles.camera}/> :
-                    <RNCamera
+                    <UvcCamera
                         ref={this.refCamera}
                         style={styles.camera}
-                        type={RNCamera.Constants.Type.back}
+                        type={UvcCamera.Constants.Type.back}
                         permissionDialogTitle={'Permission to use camera'}
                         permissionDialogMessage={'We need your permission to use your camera phone'}
                     />

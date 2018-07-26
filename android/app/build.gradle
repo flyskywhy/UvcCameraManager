@@ -154,7 +154,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':usbCameraCommon')
+    compile project(':react-native-uvc-camera')
     compile project(':react-native-image-crop-picker')
     def supportLibVersion = rootProject.hasProperty('supportLibVersion')  ? rootProject.supportLibVersion : "27.1.0"
 
