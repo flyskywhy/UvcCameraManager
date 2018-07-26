@@ -24,7 +24,12 @@
 
 web 应用的调试用 `npm run web` 然后在浏览器中进入 [http://0.0.0.0:3000/](http://0.0.0.0:3000/) ； 发布用 `npm run build-web` 在 public/ 生成 index.html 等文件。
 
-android 应用的调试用 `npm run android` （需提前按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 配置环境），如果运行后安装完 APK 就自动退出的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` ，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
+android 应用的调试用 `npm run android` ，需提前按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 配置环境，并添加 `android/local.properties` , `android-ndk` 需要版本 `r14b` ，文件内容如下（以 Windows 为例）：
+```
+sdk.dir=D\:\\proj\\tools\\android-sdk
+ndk.dir=D\:\\proj\\tools\\android-ndk-r14b
+```
+如果运行后安装完 APK 就自动退出的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` ，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
 
 ## lint
 安装 eslint

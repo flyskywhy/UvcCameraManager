@@ -102,7 +102,7 @@ android {
     }
     defaultConfig {
         applicationId "com.uvccameramanager"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -149,7 +149,12 @@ android {
     }
 }
 
+repositories {
+    maven { url 'http://raw.github.com/saki4510t/libcommon/master/repository/' }
+}
+
 dependencies {
+    compile project(':usbCameraCommon')
     compile project(':react-native-image-crop-picker')
     def supportLibVersion = rootProject.hasProperty('supportLibVersion')  ? rootProject.supportLibVersion : "27.1.0"
 

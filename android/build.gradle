@@ -33,6 +33,12 @@ ext {
     buildToolsVersion           = "26.0.2"
     googlePlayServicesVersion   = "12.0.1"
     supportLibVersion           = "27.1.0"
+    versionBuildTool            = "26.0.2"
+    versionCompiler             = 26
+    versionTarget               = 26
+    commonLibVersion            = "1.5.20"
+    javaSourceCompatibility     = JavaVersion.VERSION_1_7
+    javaTargetCompatibility     = JavaVersion.VERSION_1_7
 }
 
 subprojects { subproject ->
