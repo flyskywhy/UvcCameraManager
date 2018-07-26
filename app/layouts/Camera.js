@@ -93,6 +93,7 @@ class Camera extends PureComponent {
                     <UvcCamera
                         ref={this.refCamera}
                         style={styles.camera}
+                        rotation={270}
                         type={UvcCamera.Constants.Type.back}
                         permissionDialogTitle={'Permission to use camera'}
                         permissionDialogMessage={'We need your permission to use your camera phone'}
