@@ -51,7 +51,7 @@ class Camera extends PureComponent {
     takePicture = async () => {
         if (this.camera) {
             const options = {
-                width: 480,
+                width: 288, // this width can be debugged from getNearestSize() of react-native-uvc-camera/libuvccamera/src/main/java/com/serenegiant/usb/UVCCamera.java
                 quality: 0.5,
             };
             const data = await this.camera.takePictureAsync(options);
