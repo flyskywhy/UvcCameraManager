@@ -110,7 +110,7 @@
     "react-native-scrollable-tab-view": "git+https://github.com/flyskywhy/react-native-scrollable-tab-view.git#0.6.6",
     "react-native-smart-barcode": "git+https://github.com/flyskywhy/react-native-smart-barcode.git#573ab22",
     "react-native-style-tachyons": "3.5.0",
-    "react-native-uvc-camera": "git+https://github.com/flyskywhy/react-native-uvc-camera.git#f21ae94",
+    "react-native-uvc-camera": "git+https://github.com/flyskywhy/react-native-uvc-camera.git#c363b6f",
     "react-navigation": "1.0.0-beta.15",
     "react-redux": "4.4.8",
     "react-web": "git+https://github.com/flyskywhy/react-web.git#93e20b2",
