@@ -1,4 +1,17 @@
-# UvcCameraManager
+# UvcCameraManager base on [react-native-uvc-camera](https://github.com/flyskywhy/react-native-uvc-camera)
+
+## Quickly usage
+
+Add `android/local.properties` , `android-ndk` need just `r14b` in [NDK Archives](https://developer.android.google.cn/ndk/downloads/older_releases), e.g.
+```
+sdk.dir=D\:\\proj\\tools\\android-sdk
+ndk.dir=D\:\\proj\\tools\\android-ndk-r14b
+```
+On Windows, you need manually do what sed do in post-install.sh with react-native-image-crop-picker and react-native-smart-barcode.
+
+If you just want quickly run in debug, you can remove signingConfigs in `android/app/build.gradle`, then `react-native run-android` .
+
+## For junior user, read below
 
 ### 安装 Nodejs 及其自带的包下载工具 npm
 从 [nodejs 官网](nodejs.org) 下载安装。
@@ -29,19 +42,14 @@ android 应用的调试用 `npm run android` ，需提前按照 [React 使用详
 sdk.dir=D\:\\proj\\tools\\android-sdk
 ndk.dir=D\:\\proj\\tools\\android-ndk-r14b
 ```
+如果在 Windows 上进行编译，需要手动进行 `post-install.sh` 中针对 react-native-image-crop-picker 和 react-native-smart-barcode 的 sed 替换操作。
+
 如果运行后安装完 APK 就自动退出的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` ，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
-
-## lint
-安装 eslint
-
-    npm install -g eslint
-
-然后配合 `.eslintrc` 文件及下面提到的 Sublime Text 编辑器的 SublimeLinter-contrib-eslint 插件，可以非常方便地避免一些常见 BUG。
 
 ## 编辑代码
 最好的 javascript 的编辑器，收费的要数 webstorm 第一，免费的则是开源世界普遍使用的 Sublime Text 最强， 虽然 Sublime Text 能编辑的并不仅仅是 javascript 源代码。
 
-具体 Sublime Text 及其强大插件比如 SublimeLinter-contrib-eslint 的安装方法，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 。
+具体 Sublime Text 及其强大插件的安装方法，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 。
 
 ## 编码规范
 * 普通文件权限为 644 ，可执行文件权限为 755 。
