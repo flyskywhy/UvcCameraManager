@@ -104,7 +104,7 @@
     "react-dom": "16.0.0",
     "react-native": "0.51.0",
     "react-native-camera": "1.1.4",
-    "react-native-check-box": "git+https://github.com/yuzhiyi/react-native-check-box.git#00ef5f1",
+    "react-native-check-box": "2.1.7",
     "react-native-image-crop-picker": "0.20.3",
     "react-native-permissions": "1.0.5",
     "react-native-scrollable-tab-view": "git+https://github.com/flyskywhy/react-native-scrollable-tab-view.git#0.6.6",
