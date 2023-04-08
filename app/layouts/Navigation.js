@@ -13,12 +13,10 @@ import {
 } from 'react-redux';
 import * as UtilsComponent from './Utils';
 import {
-    addNavigationHelpers,
     NavigationActions,
 } from 'react-navigation';
 import {
-    createReduxBoundAddListener,
-    initializeListeners,
+    reduxifyNavigator,
 } from 'react-navigation-redux-helpers';
 import {
     AppNavigator
@@ -28,6 +26,10 @@ import connectComponent from '../utils/connectComponent';
 const Utils = connectComponent(UtilsComponent);
 let lastBackPressed = null;
 
+const AppNavigatorWithNavState = connect(state => ({
+    state: state.nav,
+}))(reduxifyNavigator(AppNavigator, 'root'));
+
 class Navigation extends PureComponent {
     componentWillReceiveProps(nextProps) {
         if (this.props.forbidden403 !== nextProps.forbidden403) {
@@ -36,7 +38,6 @@ class Navigation extends PureComponent {
     }
 
     componentDidMount() {
-        initializeListeners('root', this.props.nav);
         BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
     }
 
@@ -67,10 +68,6 @@ class Navigation extends PureComponent {
     }
 
     render() {
-        const {
-            dispatch,
-            nav
-        } = this.props;
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -78,14 +75,7 @@ class Navigation extends PureComponent {
                     barStyle="light-content"
                     hidden={false}
                 />
-                <AppNavigator
-                    ref={this.refNavigator}
-                    navigation={addNavigationHelpers({
-                        dispatch: dispatch,
-                        state: nav,
-                        addListener: createReduxBoundAddListener('root'),
-                    })}
-                />
+                <AppNavigatorWithNavState/>
                 <Utils/>
             </View>
         );

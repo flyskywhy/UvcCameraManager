@@ -5,9 +5,8 @@ import {
 } from 'react-native';
 
 import {
-    TabNavigator,
-    StackNavigator,
-    TabBarBottom,
+    createMaterialTopTabNavigator,
+    createStackNavigator,
 } from 'react-navigation';
 
 import HomeRenderIcon from '../images/pic/btn-homepage2.png';
@@ -83,7 +82,6 @@ const TabRouteConfigs = {
 
 const TabNavigatorConfigs = {
     initialRouteName: 'Home',
-    tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     lazy: true,
     tabBarOptions: {
@@ -102,7 +100,7 @@ const TabNavigatorConfigs = {
     },
 };
 
-const TabBarNavigator = TabNavigator(TabRouteConfigs, TabNavigatorConfigs);
+const TabBarNavigator = createMaterialTopTabNavigator(TabRouteConfigs, TabNavigatorConfigs);
 
 // 请按字母排序以方便人工检索
 const StackRouteConfigs = {
@@ -216,7 +214,7 @@ const StackNavigatorConfigs = {
     headerMode: 'screen',       // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
 };
 
-const AppNavigator = StackNavigator(StackRouteConfigs, StackNavigatorConfigs);
+const AppNavigator = createStackNavigator(StackRouteConfigs, StackNavigatorConfigs);
 
 export {
     AppNavigator

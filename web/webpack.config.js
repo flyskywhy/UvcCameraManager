@@ -93,6 +93,7 @@ var webpackConfig = {
         path.join(ROOT_PATH, 'node_modules/react-native-deprecated-custom-components'),
         path.join(ROOT_PATH, 'node_modules/react-native-permissions'),
         path.join(ROOT_PATH, 'node_modules/react-native-safe-area-view'),
+        path.join(ROOT_PATH, 'node_modules/react-native-screens'),
         path.join(ROOT_PATH, 'node_modules/react-native-scrollable-tab-view'),
         path.join(ROOT_PATH, 'node_modules/react-native-smart-barcode'),
         path.join(ROOT_PATH, 'node_modules/react-native-tab-view'),
