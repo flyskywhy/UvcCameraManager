@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import {
+    createAppContainer,
     createMaterialTopTabNavigator,
     createStackNavigator,
 } from 'react-navigation';
@@ -214,7 +215,9 @@ const StackNavigatorConfigs = {
     headerMode: 'screen',       // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
 };
 
-const AppNavigator = createStackNavigator(StackRouteConfigs, StackNavigatorConfigs);
+const StackNavigator = createStackNavigator(StackRouteConfigs, StackNavigatorConfigs);
+
+const AppNavigator = createAppContainer(StackNavigator);
 
 export {
     AppNavigator
