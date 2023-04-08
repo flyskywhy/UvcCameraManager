@@ -16,7 +16,7 @@ import {
     NavigationActions,
 } from 'react-navigation';
 import {
-    reduxifyNavigator,
+    createReduxContainer,
 } from 'react-navigation-redux-helpers';
 import {
     AppNavigator
@@ -28,7 +28,7 @@ let lastBackPressed = null;
 
 const AppNavigatorWithNavState = connect(state => ({
     state: state.nav,
-}))(reduxifyNavigator(AppNavigator, 'root'));
+}))(createReduxContainer(AppNavigator, 'root'));
 
 class Navigation extends PureComponent {
     componentWillReceiveProps(nextProps) {

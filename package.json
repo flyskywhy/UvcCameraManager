@@ -122,7 +122,7 @@
     "react-native-scrollable-tab-view": "git+https://github.com/flyskywhy/react-native-scrollable-tab-view.git#0.6.6",
     "react-native-style-tachyons": "3.5.0",
     "react-navigation": "4.4.0",
-    "react-navigation-redux-helpers": "2.0.8",
+    "react-navigation-redux-helpers": "4.0.1",
     "react-navigation-stack": "2.8.2",
     "react-navigation-tabs": "2.9.0",
     "react-redux": "4.4.8",
