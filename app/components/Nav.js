@@ -23,7 +23,7 @@ class Nav extends PureComponent {
                     fontSize:nav.fontSize ? nav.fontSize : (position === 'Center' ? 18 : 16),
                     alignItems:'center'
                 };
-                const navView = null;
+                let navView = null;
                 if (nav.text || nav.text === '') {
                     navView = (
                         <Animated.Text
