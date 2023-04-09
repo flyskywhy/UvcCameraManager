@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    AsyncStorage
-} from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 export async function setItem(key, value) {
     if (value === null) {return Promise.reject('StorageService Error: value should not be null or undefined');}
