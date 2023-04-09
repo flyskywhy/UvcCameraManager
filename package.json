@@ -39,6 +39,7 @@
   },
   "author": "iot",
   "dependencies": {
+    "@flyskywhy/react-native-smart-barcode": "1.2.0",
     "acl": "0.4.11",
     "ali-mns": "2.6.4",
     "ali-oss": "4.11.0",
@@ -114,7 +115,6 @@
     "react-native-check-box": "2.1.7",
     "react-native-permissions": "1.0.5",
     "react-native-scrollable-tab-view": "git+https://github.com/flyskywhy/react-native-scrollable-tab-view.git#0.6.6",
-    "react-native-smart-barcode": "git+https://github.com/flyskywhy/react-native-smart-barcode.git#573ab22",
     "react-native-style-tachyons": "3.5.0",
     "react-navigation": "1.5.12",
     "react-navigation-redux-helpers": "1.0.3",

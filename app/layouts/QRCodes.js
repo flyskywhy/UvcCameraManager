@@ -14,7 +14,7 @@ import {
 import * as utils from '../utils';
 if (Platform.OS !== 'web') {
     var Permissions = require('react-native-permissions').default;
-    var Barcode = require('react-native-smart-barcode').default;
+    var Barcode = require('@flyskywhy/react-native-smart-barcode').default;
 }
 
 class QRCodes extends PureComponent {
