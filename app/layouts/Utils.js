@@ -42,9 +42,9 @@ class Utils extends PureComponent {
         // }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.toast.id !== nextProps.toast.id) {
-            this.toast.show(nextProps.toast.text, nextProps.toast.timeout);
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.toast.id !== prevProps.toast.id) {
+            this.toast.show(this.props.toast.text, this.props.toast.timeout);
         }
     }
 

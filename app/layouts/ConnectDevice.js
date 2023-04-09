@@ -11,11 +11,8 @@ import {
     StyleSheet,
 } from 'react-native';
 import Nav from '../components/Nav';
-import * as DeviceListComponent from './DeviceList';
-import connectComponent from '../utils/connectComponent';
 import * as utils from '../utils';
 
-const DeviceList = connectComponent(DeviceListComponent);
 const {
     width
 } = Dimensions.get('window');
@@ -186,7 +183,6 @@ class ConnectDevice extends PureComponent {
                 <Nav navs={this.navs}/>
 
                 {Platform.OS === 'web' && this._renderId2()}
-                <DeviceList navigation={navigation}/>
             </View>
         );
     }

@@ -22,13 +22,16 @@ class LoginPlease extends PureComponent {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.addr !== this.props.addr) {
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.addr !== prevState.addr) {
             this.inputAddr = nextProps.addr;
-            this.setState({addr: nextProps.addr});
+            return {
+                addr: nextProps.addr,
+            };
         }
-    }
 
+        return null;
+    }
 
     _onSave() {
         const {

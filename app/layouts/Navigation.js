@@ -31,8 +31,8 @@ const AppNavigatorWithNavState = connect(state => ({
 }))(createReduxContainer(AppNavigator, 'root'));
 
 class Navigation extends PureComponent {
-    componentWillReceiveProps(nextProps) {
-        if (this.props.forbidden403 !== nextProps.forbidden403) {
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.forbidden403 !== prevProps.forbidden403) {
             this.navigator.props.navigation.navigate('LoginPage');
         }
     }
