@@ -1,16 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import {
     Dimensions,
-    StyleSheet
 } from 'react-native';
-import NativeTachyons from 'react-native-style-tachyons';
-
-
-NativeTachyons.build({
-    /* REM parameter is optional, default is 16 */
-    rem: Dimensions.get('window').width > 420 ? 18 : 10
-}, StyleSheet);
-
 
 const initialState = {
     toast: {
@@ -48,9 +39,6 @@ export default function(state = initialState, action) {
                 width,
                 height
             } = Dimensions.get('window');
-            NativeTachyons.build({
-                rem: width > 420 ? 18 : 10
-            }, StyleSheet);
 
             return {
                 ...state,
