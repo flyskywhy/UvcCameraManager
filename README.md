@@ -34,6 +34,10 @@ Python 2.7；.Net Framework 2 或 3；Visual Studio 2005 或更高。
 
     npm install
 
+有些 nodejs 版本可能需要这样才能顺利安装：
+
+    npm install --legacy-peer-deps
+
 ### 使用 npm 安装 NodeJS 源代码监控工具 supervisor
 
     npm install -g supervisor
