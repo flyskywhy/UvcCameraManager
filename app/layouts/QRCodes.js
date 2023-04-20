@@ -13,7 +13,7 @@ import {
 
 import * as utils from '../utils';
 if (Platform.OS !== 'web') {
-    var Permissions = require('react-native-permissions').default;
+    var {PERMISSIONS, request} = require('react-native-permissions').default;
     var Barcode = require('@flyskywhy/react-native-smart-barcode').default;
 }
 
@@ -52,9 +52,13 @@ class QRCodes extends PureComponent {
         const {
             navigation,
         } = this.props;
-        Permissions.request('camera')
-            .then(response => {
-                if (response !== 'authorized') {
+        request(
+            Platform.select({
+                android: PERMISSIONS.ANDROID.CAMERA,
+                ios: PERMISSIONS.IOS.CAMERA,
+            }),
+        ).then(response => {
+                if (response !== 'granted') {
                     Alert.alert(
                         '提示',
                         '无法获得摄像头数据，请检查是否已经打开摄像头权限', [{
