@@ -105,105 +105,54 @@ const TabBarNavigator = createMaterialTopTabNavigator(TabRouteConfigs, TabNaviga
 const StackRouteConfigs = {
     About: {
         screen: connectComponent(About),
-        navigationOptions: {
-            header: null
-        }
     },
     ConnectDevice: {
         screen: connectComponent(ConnectDevice),
-        navigationOptions: {
-            header: null
-        }
     },
     Device: {
         screen: connectComponent(Device),
-        navigationOptions: {
-            header: null
-        }
     },
     Login: {
         screen: connectComponent(Login),
-        navigationOptions: {
-            header: null
-        }
     },
     LoginCode: {
         screen: connectComponent(LoginCode),
-        navigationOptions: {
-            header: null
-        }
     },
     LoginPage: {
         screen: connectComponent(LoginPage),
-        navigationOptions: {
-            header: null
-        }
     },
     LoginResetPasswd: {
         screen: connectComponent(LoginResetPasswd),
-        navigationOptions: {
-            header: null
-        }
     },
     Main: {
         screen: TabBarNavigator,
-        navigationOptions: {
-            header: null
-        }
     },
     QRCodes: {
         screen: connectComponent(QRCodes),
-        navigationOptions: {
-            header: null
-        }
     },
     Register: {
         screen: connectComponent(Register),
-        navigationOptions: {
-            header: null
-        }
     },
     Setting: {
         screen: connectComponent(Setting),
-        navigationOptions: {
-            header: null
-        }
     },
     UserSetting: {
         screen: connectComponent(UserSetting),
-        navigationOptions: {
-            header: null
-        }
     },
     UserSettingAddr: {
         screen: connectComponent(UserSettingAddr),
-        navigationOptions: {
-            header: null
-        }
     },
     UserSettingEmail: {
         screen: connectComponent(UserSettingEmail),
-        navigationOptions: {
-            header: null
-        }
     },
     UserSettingName: {
         screen: connectComponent(UserSettingName),
-        navigationOptions: {
-            header: null
-        }
     },
     UserSettingPasswd: {
         screen: connectComponent(UserSettingPasswd),
-        navigationOptions: {
-            header: null
-        }
     },
     WebViewLayout: {
         screen: connectComponent(WebViewLayout),
-        navigationOptions: {
-            header: null
-        }
     },
 };
 
@@ -211,6 +160,9 @@ const StackNavigatorConfigs = {
     initialRouteName: 'Main',   // 初始化哪个界面为根界面
     mode: 'card',               // 跳转方式：默认的 card ，在 iOS 上是从右到左跳转，在 Android 上是从下到上，都是使用原生系统的默认跳转方式
     headerMode: 'screen',       // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
+    defaultNavigationOptions: {
+        headerShown: false,
+    },
 };
 
 const StackNavigator = createStackNavigator(StackRouteConfigs, StackNavigatorConfigs);
