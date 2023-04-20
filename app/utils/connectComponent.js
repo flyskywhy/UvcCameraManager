@@ -8,7 +8,7 @@ import actions from '../actions';
 
 
 const options = {
-    withRef: true
+    forwardRef: true,
 };
 
 
