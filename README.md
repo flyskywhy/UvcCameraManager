@@ -117,7 +117,9 @@ ffmpeg 安装步骤：
 
 web 应用的调试用 `npm run web` 然后在浏览器中进入 [http://0.0.0.0:3000/](http://0.0.0.0:3000/) ，这个命令使用了动态加载技术，不用手动刷新浏览器所以对调整界面元素比较方便，但如果访问后端的话会产生跨域问题（因为 3000 和 8765 是不同的端口号，就被认为是不同的域），此时要么使用带有 `DEBUG` 环境变量比如 `npm start` 那样的脚本启动后端以便让 `kcors` 模块来开放跨域权限，要么使用 `npm run debug-web-w` 然后在浏览器中进入 [http://0.0.0.0:8765/](http://0.0.0.0:8765/) ； 发布用 `npm run build-web` 。
 
-android 应用的调试用 `npm run android` （需提前按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 配置环境），如果运行后安装完 APK 就自动退出的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` ，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
+android 需提前按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) “配置 Android 开发环境”， android 应用的调试用 `npm run android` ，如果运行后安装完 APK 就自动退出 `npm run android` 进程的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` 生成 `android/app/build/outputs/apk/` 中的文件，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
+
+ios 需提前在 macOS 上按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) “配置 iOS 开发环境”及参考“使用 Cocoapods 安装 iOS 第三方库”，先进入 `ios/` 目录运行 `pod install` ， ios 应用的调试用 Xcode 打开 ios/ 目录中的 `.xcworkspace` 而非 `.xcodeproj` 。
 
 ##  调试LOG输出
 代码默认情况下：
@@ -299,12 +301,12 @@ KOA架构下引入koa-bunyan-logger, 每个网络请求有request日志包含用
 
     npm install -g eslint
 
-然后配合 `.eslintrc` 文件及下面提到的 Sublime Text 编辑器的 SublimeLinter-contrib-eslint 插件，可以非常方便地避免一些常见 BUG。
+然后配合 `.eslintrc.js` 文件及下面提到的 Sublime Text 编辑器的 SublimeLinter-eslint 和 JsPrettier 插件，可以非常方便地避免一些常见 BUG。
 
 ## 编辑代码
 最好的 javascript 的编辑器，收费的要数 webstorm 第一，免费的则是开源世界普遍使用的 Sublime Text 最强， 虽然 Sublime Text 能编辑的并不仅仅是 javascript 源代码。
 
-具体 Sublime Text 及其强大插件比如 SublimeLinter-contrib-eslint 的安装方法，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 。
+具体 Sublime Text 及其强大插件比如 SublimeLinter-eslint 的安装方法，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 。
 
 ## 编码规范
 * 普通文件权限为 644 ，可执行文件权限为 755 。
@@ -312,14 +314,15 @@ KOA架构下引入koa-bunyan-logger, 每个网络请求有request日志包含用
 * 换行符为 LF。 应用 Sublime Text 来保证，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 中的“ 设置换行符为 LF ”小节。
 * 行尾不要留有空白字符。应用 Sublime Text 来保证，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 中的“自动删除行尾的空白字符（空格或制表符）”小节。
 * 缩进为 4 个空格。应用 Sublime Text 来保证，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 中的“ 转换 tab 为 space  ”小节。
-* 应用上文提到的 SublimeLinter-contrib-eslint 插件，这样除了可以自动提示比如忘了加逗号的错误，也可以自动提示 [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/) 中提到的警告比如用 `===` 代替 `==` 、绝对不要省略分号、绝对不要使用 eval 等等。
-* `.eslintrc` 未能覆盖的，详见 [JavaScript编码规范](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/JavaScript编码规范.md) 。
+* 应用上文提到的 SublimeLinter-eslint 插件，这样除了可以自动提示比如忘了加逗号的错误，也可以自动提示 [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/) 中提到的警告比如用 `===` 代替 `==` 、绝对不要省略分号、绝对不要使用 eval 等等。
+* 应用上文提到的 JsPrettier 插件，这样不用再争论哪种代码规范更合适了，直接用 prettier 格式化代码即可。
+* `.eslintrc.js` 未能覆盖的，详见 [JavaScript编码规范](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/JavaScript编码规范.md) 。
 * git 提交时的描述请参考 [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 一文。
 * 后端代码即使没有数据要返回，比如许多 POST 或 PUT 的 API ，也要在返回前赋值 `this.body = {};` ，否则有些浏览器会因为无法按照 JSON 格式去解析 body 而返回 `Uncaught (in promise) SyntaxError: Unexpected token O` 的错误。
 * 后端向前端错误提示: 偶尔会有在 errCode 所表示的国际化提示文字中添加变量的需求，此时需要添加一个与 errCode 平级的 keyWord 来表示变量，格式参照 keyWord: [['节目1', '节目2', '节目3'], ['屏幕1', '屏幕2', '屏幕3']] ，然后在 `locale/zh-CN.js` 中就可以用比如 x[1][0] 来代表 '屏幕1' 这个字符串变量，或是直接用 x[0] 来代表 '节目1, 节目2, 节目3' 这一整个字符串变量了。
 * 生产环境的数据库字段操作，尽量规避字段的删除和重命名操作
 
-其它未尽描述的编码规范，对于 js 文件，应用 Sublime Text 来保证，详见 [Sublime Text 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/文档编辑/SublimeText/SublimeText使用详解.md) 中的“ JsFormat ”小节。对于 html 和 css 文件，参照原有代码的格式即可。
+对于 html 和 css 文件，参照原有代码的格式即可。
 
 ## 数据库迁移
 1.使用mysqldump 来备份数据和结构到sql文件（非必须，为安全起见），如下；
