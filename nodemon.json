@@ -1,9 +1,4 @@
 {
-  "ignore": [
-      "log",
-      "node_modules",
-      "public",
-      "test"
-  ],
+  "ignore": ["log", "node_modules", "public", "test"],
   "ext": "js"
 }

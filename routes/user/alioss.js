@@ -12,81 +12,89 @@ var outputBucket = aliyunMtsCfg.output.bucket;
 var outputLocation = aliyunMtsCfg.output.location;
 var STS = OSS.STS;
 var sts = new STS({
-    accessKeyId: aliyun_oss.accessKeyId,
-    accessKeySecret: aliyun_oss.accessKeySecret
+  accessKeyId: aliyun_oss.accessKeyId,
+  accessKeySecret: aliyun_oss.accessKeySecret,
 });
 
 module.exports = (router) => {
-    router.get(api.apiPath + api.aliOSSTokenGET.path, function*() {
-        this.checkParams('userDbid').notEmpty();
-        if (this.errors) {
-            this.body = this.errors;
-            this.status = 400;
-            return;
-        }
-        var userId = yield currentUserId.apply(this);
-        if (isNaN(userId)) {
-            this.body = [{
-                UserId: 'invalid userId'
-            }];
-            this.status = 400;
-            return;
-        }
+  router.get(api.apiPath + api.aliOSSTokenGET.path, function* () {
+    this.checkParams('userDbid').notEmpty();
+    if (this.errors) {
+      this.body = this.errors;
+      this.status = 400;
+      return;
+    }
+    var userId = yield currentUserId.apply(this);
+    if (isNaN(userId)) {
+      this.body = [
+        {
+          UserId: 'invalid userId',
+        },
+      ];
+      this.status = 400;
+      return;
+    }
 
-        var userRole = yield getUserRoleById(userId);
-        if (!userRole) {
-            this.body = [{
-                error: 'Unknow user role'
-            }];
-            this.status = 400;
-            return;
-        }
+    var userRole = yield getUserRoleById(userId);
+    if (!userRole) {
+      this.body = [
+        {
+          error: 'Unknow user role',
+        },
+      ];
+      this.status = 400;
+      return;
+    }
 
-        var bucketName;
-        var locationName;
-        if (this.query.type === 'output') {
-            bucketName = outputBucket;
-            locationName = outputLocation;
-        } else { //'undefined', default is 'input'
-            bucketName = inputBucket;
-            locationName = inputLocation;
-        }
+    var bucketName;
+    var locationName;
+    if (this.query.type === 'output') {
+      bucketName = outputBucket;
+      locationName = outputLocation;
+    } else {
+      //'undefined', default is 'input'
+      bucketName = inputBucket;
+      locationName = inputLocation;
+    }
 
-        var Resource;
-        if (_.includes(userRole, 'sysadmin')) {
-            Resource = 'acs:oss:*:*:' + bucketName + '/*';
-        } else {
-            Resource = 'acs:oss:*:*:' + bucketName + '/' + userId + '/*';
-        }
-        var policy = {
-            'Statement': [{
-                'Action': [
-                    'oss:ListObjects',
-                    'oss:GetObject',
-                    'oss:DeleteObject',
-                    'oss:ListParts',
-                    'oss:AbortMultipartUpload',
-                    'oss:PutObject',
-                ],
-                'Effect': 'Allow',
-                'Resource': [
-                    'acs:oss:*:*:' + bucketName,
-                    Resource,
-                ]
-            }],
-            'Version': '1'
-        };
+    var Resource;
+    if (_.includes(userRole, 'sysadmin')) {
+      Resource = 'acs:oss:*:*:' + bucketName + '/*';
+    } else {
+      Resource = 'acs:oss:*:*:' + bucketName + '/' + userId + '/*';
+    }
+    var policy = {
+      Statement: [
+        {
+          Action: [
+            'oss:ListObjects',
+            'oss:GetObject',
+            'oss:DeleteObject',
+            'oss:ListParts',
+            'oss:AbortMultipartUpload',
+            'oss:PutObject',
+          ],
+          Effect: 'Allow',
+          Resource: ['acs:oss:*:*:' + bucketName, Resource],
+        },
+      ],
+      Version: '1',
+    };
 
-        var token = yield sts.assumeRole(
-            aliyun_oss.RoleArn, policy, 15 * 60, aliyun_oss.RoleSessionName);
+    var token = yield sts.assumeRole(
+      aliyun_oss.RoleArn,
+      policy,
+      15 * 60,
+      aliyun_oss.RoleSessionName,
+    );
 
-        this.body = {
-            region: locationName, //'oss-cn-hangzhou',
-            accessKeyId: token.credentials.AccessKeyId,
-            accessKeySecret: token.credentials.AccessKeySecret,
-            stsToken: token.credentials.SecurityToken,
-            bucket: bucketName
-        };
-        log.debug(this.body);
-    });
-}
+    this.body = {
+      region: locationName, //'oss-cn-hangzhou',
+      accessKeyId: token.credentials.AccessKeyId,
+      accessKeySecret: token.credentials.AccessKeySecret,
+      stsToken: token.credentials.SecurityToken,
+      bucket: bucketName,
+    };
+    log.debug(this.body);
+  });
+};

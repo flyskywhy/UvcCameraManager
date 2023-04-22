@@ -5,9 +5,9 @@ import * as device from './device';
 import * as disGroup from './disGroup';
 
 export default {
-    ...local,
-    ...user,
-    ...utils,
-    ...device,
-    ...disGroup,
+  ...local,
+  ...user,
+  ...utils,
+  ...device,
+  ...disGroup,
 };

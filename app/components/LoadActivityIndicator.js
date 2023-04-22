@@ -1,64 +1,54 @@
-import React, {
-    PureComponent
-} from 'react';
-import {
-    View,
-    StyleSheet,
-    ActivityIndicator,
-} from 'react-native';
+import React, {PureComponent} from 'react';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
 class LoadActivityIndicator extends PureComponent {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            animating: true
-        };
-    }
-
-    static propTypes = {
-        ...ActivityIndicator.propTypes
+  constructor(props) {
+    super(props);
+    this.state = {
+      animating: true,
     };
+  }
 
-    static defaultProps = {
-        animating: true,
-        size: 'large',
-        color: 'white',
-    }
+  static propTypes = {
+    ...ActivityIndicator.propTypes,
+  };
 
-    setAnimating(animating) {
-        this.setState({
-            animating: animating
-        });
-    }
+  static defaultProps = {
+    animating: true,
+    size: 'large',
+    color: 'white',
+  };
 
-    getAnimating() {
-        return this.state.animating;
-    }
+  setAnimating(animating) {
+    this.setState({
+      animating: animating,
+    });
+  }
 
-    render() {
-        const {
-            size,
-            color
-        } = this.props;
-        return (
-            <View style={styles.activityIndicator}>
-                <ActivityIndicator
-                    animating={this.state.animating}
-                    color={color}
-                    size={size}
-                />
-            </View>
-        );
-    }
+  getAnimating() {
+    return this.state.animating;
+  }
+
+  render() {
+    const {size, color} = this.props;
+    return (
+      <View style={styles.activityIndicator}>
+        <ActivityIndicator
+          animating={this.state.animating}
+          color={color}
+          size={size}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    activityIndicator: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex:1
-    },
+  activityIndicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
 });
 
 export default LoadActivityIndicator;

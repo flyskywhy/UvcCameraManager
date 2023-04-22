@@ -4,17 +4,18 @@
 let I;
 
 module.exports = {
-    _init() {
-        I = require('../custom_steps.js')();
-    },
+  _init() {
+    I = require('../custom_steps.js')();
+  },
 
-    permissionOkButton: {
-        android: {
-            id: 'com.android.packageinstaller:id/permission_allow_button'
-        }
+  permissionOkButton: {
+    android: {
+      id: 'com.android.packageinstaller:id/permission_allow_button',
     },
+  },
 
-    permissionAllow() {
-        this.permissionOkButton[process.profile] && I.click(this.permissionOkButton[process.profile]);
-    }
+  permissionAllow() {
+    this.permissionOkButton[process.profile] &&
+      I.click(this.permissionOkButton[process.profile]);
+  },
 };

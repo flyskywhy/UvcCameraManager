@@ -4,11 +4,11 @@
 let I;
 
 module.exports = {
-    _init() {
-        I = require('../custom_steps.js')();
-    },
+  _init() {
+    I = require('../custom_steps.js')();
+  },
 
-    clickStart() {
-        I.click('~马上启动');
-    }
+  clickStart() {
+    I.click('~马上启动');
+  },
 };

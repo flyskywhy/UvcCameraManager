@@ -4,11 +4,11 @@
 let I;
 
 module.exports = {
-    _init() {
-        I = require('../custom_steps.js')();
-    },
+  _init() {
+    I = require('../custom_steps.js')();
+  },
 
-    ensureHomePageIsOpen() {
-        console.log('ensureHomePageIsOpen');
-    }
+  ensureHomePageIsOpen() {
+    console.log('ensureHomePageIsOpen');
+  },
 };

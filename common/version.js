@@ -1,9 +1,9 @@
 var gitRepoInfo = require('git-repo-info');
-var package = require('../package.json');
-var name = package.name;
-var version = package.version;
+var packageJson = require('../package.json');
+var name = packageJson.name;
+var version = packageJson.version;
 
-module.exports = function( /* environment, appConfig */ ) {
+module.exports = function (/* environment, appConfig */) {
   var currentInfo = gitRepoInfo();
 
   return {
@@ -15,6 +15,6 @@ module.exports = function( /* environment, appConfig */ ) {
     committer: currentInfo.committer,
     committerDate: currentInfo.committerDate,
     commitMessage: currentInfo.commitMessage,
-    root: currentInfo.root
+    root: currentInfo.root,
   };
 };

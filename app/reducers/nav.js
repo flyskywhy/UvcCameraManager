@@ -1,9 +1,5 @@
-import {
-    AppNavigator
-} from '../configs/Router';
-import {
-    createNavigationReducer,
-} from 'react-navigation-redux-helpers';
+import {AppNavigator} from '../configs/Router';
+import {createNavigationReducer} from 'react-navigation-redux-helpers';
 
 export default createNavigationReducer(AppNavigator);
 

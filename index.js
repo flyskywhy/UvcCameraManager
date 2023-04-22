@@ -34,18 +34,18 @@ var backend = acl.backend;
 var role = db.models.b_role;
 var slbCheckPath = defines.defaultSLBCheck;
 
-co(function*() {
-    var roles = yield role.findAll();
-    for (var item of roles) {
-        yield acl.delAclRole(item.name);
-    }
-    yield acl.delAclRole('public');
-    yield acl.createUserRole('guest', 'public');
+co(function* () {
+  var roles = yield role.findAll();
+  for (var item of roles) {
+    yield acl.delAclRole(item.name);
+  }
+  yield acl.delAclRole('public');
+  yield acl.createUserRole('guest', 'public');
 
-    if (process.env.FLUSHCACHE && process.env.FLUSHCACHE !== 'N') {
-        cache.flushdb();
-        log.debug('flush redis db!');
-    }
+  if (process.env.FLUSHCACHE && process.env.FLUSHCACHE !== 'N') {
+    cache.flushdb();
+    log.debug('flush redis db!');
+  }
 });
 
 var app = koa();
@@ -68,19 +68,21 @@ app.use(koaBody());
 
 // session
 app.keys = ['your-session-secret'];
-app.use(session({
+app.use(
+  session({
     key: defines.cookiePassportName,
     store: {
-        host: cfg.redis.host,
-        port: cfg.redis.port,
-        options: {
-            auth_pass: cfg.redis.pwd,
-            db: cfg.redis.db
-        },
+      host: cfg.redis.host,
+      port: cfg.redis.port,
+      options: {
+        auth_pass: cfg.redis.pwd,
         db: cfg.redis.db,
-        ttl: defines.cookieTimeout
+      },
+      db: cfg.redis.db,
+      ttl: defines.cookieTimeout,
     },
-}));
+  }),
+);
 
 // authentication
 require('./common/passport.js');
@@ -90,108 +92,118 @@ app.use(passport.session());
 app.use(koaValidate());
 
 if (process.env.DEBUG) {
-    app.use(cors({
-        credentials: true
-    }));
+  app.use(
+    cors({
+      credentials: true,
+    }),
+  );
 }
 
-app.use(function*(next) {
-    var user = yield auth.user(this);
-    var userId;
+app.use(function* (next) {
+  var user = yield auth.user(this);
+  var userId;
 
-    if (user !== null) {
-        userId = user.id;
-        for (var i = 0; i < user.role_list.length; i++) {
-            yield acl.checkAclUserRole(user, user.role_list[i].name, 'public');
-        }
+  if (user !== null) {
+    userId = user.id;
+    for (var i = 0; i < user.role_list.length; i++) {
+      yield acl.checkAclUserRole(user, user.role_list[i].name, 'public');
+    }
+  } else {
+    userId = 'guest';
+  }
+
+  this.state.user = {
+    _id: userId,
+  };
+
+  yield next;
+  if (this.url !== slbCheckPath) {
+    if (this.status >= 400) {
+      this.log.warn(`Status: ${this.status} ${JSON.stringify(this.body)}`);
     } else {
-        userId = 'guest';
+      this.log.trace(`Status: ${this.status} ${JSON.stringify(this.body)}`);
     }
-
-    this.state.user = {
-        _id: userId
-    };
-
-    yield next;
-    if (this.url !== slbCheckPath) {
-        if (this.status >= 400) {
-            this.log.warn(`Status: ${this.status} ${JSON.stringify(this.body)}`);
-        } else {
-            this.log.trace(`Status: ${this.status} ${JSON.stringify(this.body)}`);
-        }
-    }
+  }
 });
 
 app.use(
-    ACL({
-        user: ctx => {
-            return ctx.state.user._id;
-        },
-        backend: ctx => {
-            return Promise.resolve(backend);
-        }
-    })
+  ACL({
+    user: (ctx) => {
+      return ctx.state.user._id;
+    },
+    backend: (ctx) => {
+      return Promise.resolve(backend);
+    },
+  }),
 );
 
-app.use(function*(next) {
-    if (this.url === slbCheckPath) {
-        this.body = {};
-        this.status = 200;
-        return;
-    } else {
-        yield next;
-    }
+app.use(function* (next) {
+  if (this.url === slbCheckPath) {
+    this.body = {};
+    this.status = 200;
+    return;
+  } else {
+    yield next;
+  }
 });
 
 app.use(koaBunyanLogger(log));
 app.use(koaBunyanLogger.requestIdContext());
 app.use(koaBunyanLogger.timeContext());
-app.use(koaBunyanLogger.requestLogger({
-    levelFn: function(status, err) {
-        if (status >= 500) {
-            return 'error';
-        } else if (status >= 400) {
-            return 'warn';
-        } else {
-            return 'info';
-        }
+app.use(
+  koaBunyanLogger.requestLogger({
+    levelFn: function (status, err) {
+      if (status >= 500) {
+        return 'error';
+      } else if (status >= 400) {
+        return 'warn';
+      } else {
+        return 'info';
+      }
     },
-    updateLogFields: function(fields) {},
-    updateRequestLogFields: function(fields, err) {},
-    updateResponseLogFields: function(fields, err) {
-        if (this.current && this.current.user) {
-            fields.authorized_user = this.current.user.name;
-            fields.authorized_phone = this.current.user.phone;
-        } else {
-            fields.authorized_user = 'unknown';
-        }
-        var userAgent = this.header['user-agent'];
-        if (userAgent.indexOf('okhttp') >= 0) {
-            fields.platform = 'Android-App';
-        } else if (userAgent.indexOf('CFNetwork') >= 0) {
-            fields.platform = 'iOS-App';
-        } else {
-            fields.platform = 'Web';
-        }
-    }
-}));
+    updateLogFields: function (fields) {},
+    updateRequestLogFields: function (fields, err) {},
+    updateResponseLogFields: function (fields, err) {
+      if (this.current && this.current.user) {
+        fields.authorized_user = this.current.user.name;
+        fields.authorized_phone = this.current.user.phone;
+      } else {
+        fields.authorized_user = 'unknown';
+      }
+      var userAgent = this.header['user-agent'];
+      if (userAgent.indexOf('okhttp') >= 0) {
+        fields.platform = 'Android-App';
+      } else if (userAgent.indexOf('CFNetwork') >= 0) {
+        fields.platform = 'iOS-App';
+      } else {
+        fields.platform = 'Web';
+      }
+    },
+  }),
+);
 
 app.use(routerNoAcl);
 app.use(ACL.middleware());
-app.use(function*(next) {
-    if (this.isAuthenticated()) {
-        yield next;
-    } else {
-        this.log.error(`passport: ${this.method} ${this.url} ${this.request.ip}`);
-        this.status = 403; //前台判断403状态跳转登录界面
-    }
+app.use(function* (next) {
+  if (this.isAuthenticated()) {
+    yield next;
+  } else {
+    this.log.error(`passport: ${this.method} ${this.url} ${this.request.ip}`);
+    this.status = 403; //前台判断403状态跳转登录界面
+  }
 });
 app.use(router);
 
 app.on('error', (err, ctx) => {
-    ctx.log.error({
-        user: ctx
-    }, 'Error:--->', ctx.method, ctx.url, err.stack);
+  ctx.log.error(
+    {
+      user: ctx,
+    },
+    'Error:--->',
+    ctx.method,
+    ctx.url,
+    err.stack,
+  );
 });
 
 app = app.listen(process.env.PORT || port);
