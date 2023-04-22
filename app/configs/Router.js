@@ -33,8 +33,8 @@ import connectComponent from '../utils/connectComponent';
 
 const styles = StyleSheet.create({
   tabIcon: {
-    // height: 23,
-    // width: 23,
+    height: 23,
+    width: 23,
     resizeMode: 'cover',
   },
 });

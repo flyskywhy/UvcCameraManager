@@ -58,10 +58,10 @@ app.proxy = true;
 app.use(compress());
 
 // static file
-app.use(staticServer(path.join(__dirname, 'public')));
+app.use(staticServer(path.join(__dirname, 'build')));
 
 // favicon
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/build/favicon.ico'));
 
 // http parse
 app.use(koaBody());

@@ -6,9 +6,7 @@ import {localeGet} from '../../common/locale';
 export default {
   domain: __DEV__
     ? Platform.OS === 'web'
-      ? __WEBPACK_WATCH__
-        ? ''
-        : 'http://' + location.hostname + ':8765'
+      ? 'http://' + location.hostname + ':8765'
       : 'http://ReactWebNative8Koa.com:447'
     : Platform.OS === 'web'
     ? ''

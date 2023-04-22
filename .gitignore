@@ -61,7 +61,6 @@ buck-out/
 
 # other
 log/*
-public/
 instances/config.js
 instances/*.pem
 *.keystore

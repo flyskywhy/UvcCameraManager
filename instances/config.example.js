@@ -61,9 +61,9 @@ module.exports = {
     aplipayOpenAPIsGateWay: 'https://openapi.alipay.com/gateway.do?',
   },
   upload: {
-    videoPath: __dirname + '/../public/upload/video/',
-    picturePath: __dirname + '/../public/upload/picture/',
-    thumbnailPath: __dirname + '/../public/upload/thumbnail/',
+    videoPath: __dirname + '/../build/upload/video/',
+    picturePath: __dirname + '/../build/upload/picture/',
+    thumbnailPath: __dirname + '/../build/upload/thumbnail/',
     uploadServer: '127.0.0.1',
     uploadServerPort: '8765',
     fileServer: '127.0.0.1',

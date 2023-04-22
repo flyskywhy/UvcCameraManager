@@ -12,7 +12,6 @@ image: flyskywhy/rn-nodejs:v6.11.1
 cache:
   paths:
     - node_modules/
-    - public/
 #    - android/app/build/
 
 before_script:
@@ -50,11 +49,8 @@ deploy_web_app_srv:
   tags:
     - react-native
   script:
-    - rm -f public/bundle.js public/index.html
+    - rm -rf build
     - npm run build-web
-    - if [ -f public/bundle.js ]; then true; else false; fi
-    - export YP_GIT_HASH=`git rev-parse --short HEAD`
-    - sed -i "s/bundle.js/bundle.js?v=$YP_GIT_HASH/" public/index.html
 
     - cp instances/config.example.js instances/config.js
     - sed -i "s/DB_USERNAME/$DB_USERNAME/" instances/config.js

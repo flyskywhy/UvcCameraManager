@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
-import {WebView, View, StyleSheet} from 'react-native';
-
+import {View, StyleSheet} from 'react-native';
+import {WebView} from 'react-native-webview';
 import Nav from '../components/Nav';
 
 class WebViewLayout extends PureComponent {

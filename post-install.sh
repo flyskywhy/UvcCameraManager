@@ -2,12 +2,6 @@ upgrade_react_header_to_rn0_40() {
     find node_modules/$1 -name *.[hm] | xargs grep $2 | sed "s/:.*$//" | xargs sed -i -e "s/#import \"$2\"/#import <React\/$2>/"
 }
 
-# echo patching react-native-video
-# mkdir -p node_modules/ReactWeb/Libraries/Image
-# touch node_modules/ReactWeb/Libraries/Image/resolveAssetSource.js
-# mkdir -p node_modules/react-web/Libraries/Image
-# touch node_modules/react-web/Libraries/Image/resolveAssetSource.js
-
 echo patching rmc-date-picker
 sed -i -e "s/, { key: 'minutes', props: { children: minutes } }//" node_modules/rmc-date-picker/lib/DatePicker.js
 sed -i -e "s/'rmc-picker\/lib\/MultiPicker'/'rmc-picker\/lib\/MultiPicker.native'/" node_modules/rmc-date-picker/lib/DatePicker.js

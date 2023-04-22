@@ -105,7 +105,7 @@ ffmpeg 安装步骤：
 
     npm start
 
-这里的 start 脚本实际上就是 `DEBUG=true supervisor -i src,public,views,webpack.config.js index.js` ，也就是用 supervisor 监控着，一旦有某个源代码修改了，会自动重启后端，这样就很方便于我们修改调试代码了。 `DEBUG=true` 的调试方式详见 [debug](https://www.npmjs.com/package/debug) 模块的介绍。这里直接让 start 脚本作为调试用途，是因为真正的发布版本我们会用下面提到的 pm2 来启动。
+这里的 start 脚本实际上就是 `DEBUG=true FLUSHCACHE=N ALIPAY=N supervisor -i app,web,index.web.js,build index.js` ，也就是用 supervisor 监控着，一旦有某个源代码修改了，会自动重启后端，这样就很方便于我们修改调试代码了。 `DEBUG=true` 的调试方式详见 [debug](https://www.npmjs.com/package/debug) 模块的介绍。这里直接让 start 脚本作为调试用途，是因为真正的发布版本我们会用下面提到的 pm2 来启动。
 
 注： package.json 中的脚本，除了 start 和 test 可以直接加 `npm` 前缀来启动，其它脚本需要加 `npm run` 前缀。
 
@@ -115,7 +115,7 @@ ffmpeg 安装步骤：
 ## 启动客户端 APP
 支持 android 、 ios 、 web 三种 APP 。
 
-web 应用的调试用 `npm run web` 然后在浏览器中进入 [http://0.0.0.0:3000/](http://0.0.0.0:3000/) ，这个命令使用了动态加载技术，不用手动刷新浏览器所以对调整界面元素比较方便，但如果访问后端的话会产生跨域问题（因为 3000 和 8765 是不同的端口号，就被认为是不同的域），此时要么使用带有 `DEBUG` 环境变量比如 `npm start` 那样的脚本启动后端以便让 `kcors` 模块来开放跨域权限，要么使用 `npm run debug-web-w` 然后在浏览器中进入 [http://0.0.0.0:8765/](http://0.0.0.0:8765/) ； 发布用 `npm run build-web` 。
+web 应用的调试用 `npm run web` 然后在浏览器中进入 [http://localhost:3000](http://localhost:3000) ，如果访问后端的话会产生跨域问题（因为 3000 和 8765 是不同的端口号，就被认为是不同的域），此时要么使用带有 `DEBUG` 环境变量比如 `npm start` 那样的脚本启动后端以便让 `kcors` 模块来开放跨域权限，要么（待想办法）在浏览器中进入 [http://0.0.0.0:8765/](http://0.0.0.0:8765/) ；发布用 `npm run build-web` 生成 `build/` 中的文件，可以使用 `npx http-server build` 命令并用浏览器 [http://127.0.0.1:8080](http://127.0.0.1:8080) 进行简单测试。
 
 android 需提前按照 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) “配置 Android 开发环境”， android 应用的调试用 `npm run android` ，如果运行后安装完 APK 就自动退出 `npm run android` 进程的，则还需手动运行 `npm run rn` ； 发布用 `npm run build-android` 生成 `android/app/build/outputs/apk/` 中的文件，发布用的签名方法详见 [React 使用详解](https://github.com/flyskywhy/g/blob/master/i主观的体验方式/t快乐的体验/电信/Tool/编程语言/JavaScript/React使用详解.md) 中的“ release 离线打包 ”小节。
 
@@ -284,7 +284,7 @@ KOA架构下引入koa-bunyan-logger, 每个网络请求有request日志包含用
 
     sudo ln -s `readlink -f scripts/nginx.conf` /etc/nginx/sites-enabled/ReactWebNative8Koa
     sudo mkdir -p /var/www/ReactWebNative8Koa/
-    sudo ln -s `readlink -f public/` /var/www/ReactWebNative8Koa/
+    sudo ln -s `readlink -f build/` /var/www/ReactWebNative8Koa/
 
 来让我们的 `scripts/nginx.conf` 成为系统的 `/etc/nginx/nginx.conf` 所 include 的一部分。
 

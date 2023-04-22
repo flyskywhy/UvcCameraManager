@@ -6,9 +6,6 @@ import ReactWebNative8Koa from './app/';
 
 AppRegistry.registerComponent('ReactWebNative8Koa', () => ReactWebNative8Koa);
 
-var app = document.createElement('div');
-document.body.appendChild(app);
-
 AppRegistry.runApplication('ReactWebNative8Koa', {
-  rootTag: app,
+  rootTag: document.getElementById('root'),
 });
