@@ -154,6 +154,7 @@ const StackNavigatorConfigs = {
   headerMode: 'screen', // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
   defaultNavigationOptions: {
     headerShown: false,
+    // animationEnabled: false,
     cardStyle: {
       backgroundColor: config.backgroundColor,
     },
