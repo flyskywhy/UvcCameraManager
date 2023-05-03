@@ -17,7 +17,7 @@
     "web-clean": "rimraf node_modules/.cache/default-development",
     "web-fresh": "rm -fr node_modules/.cache/*; react-app-rewired start",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
-    "build-web": "react-app-rewired build",
+    "build-web": "node --max_old_space_size=4096 node_modules/.bin/react-app-rewired build",
     "build-ios": "react-native unbundle --entry-file index.ios.js --bundle-output main.jsbundle --platform ios --dev false",
     "install-android": "cross-env ./android/gradlew installRelease -p ./android/",
     "checkversion": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json",
