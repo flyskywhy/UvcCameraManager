@@ -5,6 +5,8 @@ import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 
+import config from '../configs';
+
 import HomeRenderIcon from '../images/pic/btn-homepage2.png';
 import HomePressedIcon from '../images/pic/btn-homepage.png';
 import UserCenterRenderIcon from '../images/common/tab_gerenzhongxini_n.png';
@@ -152,6 +154,9 @@ const StackNavigatorConfigs = {
   headerMode: 'screen', // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
   defaultNavigationOptions: {
     headerShown: false,
+    cardStyle: {
+      backgroundColor: config.backgroundColor,
+    },
   },
 };
 

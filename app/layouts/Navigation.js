@@ -3,15 +3,18 @@ import {
   BackHandler,
   StyleSheet,
   View,
+  Platform,
   StatusBar,
   ToastAndroid,
 } from 'react-native';
+import {setRootViewBackgroundColor} from '@kingstinct/react-native-root-view-background';
 import {connect} from 'react-redux';
 import * as UtilsComponent from './Utils';
 import {NavigationActions} from 'react-navigation';
 import {createReduxContainer} from 'react-navigation-redux-helpers';
 import {AppNavigator} from '../configs/Router';
 import connectComponent from '../utils/connectComponent';
+import config from '../configs';
 
 const Utils = connectComponent(UtilsComponent);
 let lastBackPressed = null;
@@ -28,6 +31,7 @@ class Navigation extends PureComponent {
   }
 
   componentDidMount() {
+    Platform.OS !== 'web' && setRootViewBackgroundColor(config.backgroundColor);
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
 

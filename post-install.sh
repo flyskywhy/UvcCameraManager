@@ -15,6 +15,9 @@ echo patching passport-alipay-oauth2
 sed -i -e "s/fs.readFileSync(this._options.alipay_public_key)/this._options.alipay_public_key/g" node_modules/passport-alipay-oauth2/lib/alipay.js
 sed -i -e "s/fs.readFileSync(this._options.private_key)/this._options.private_key/g" node_modules/passport-alipay-oauth2/lib/alipay.js
 
+echo patching react-native-root-view-background
+sed -i -e "s/compile /implementation /g" node_modules/@kingstinct/react-native-root-view-background/android/build.gradle
+
 echo patching passport-weixin
 sed -i -e "s/openid;/openid + \'\&lang=zh_CN\';/g" node_modules/passport-weixin/lib/strategy.js
 

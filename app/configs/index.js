@@ -4,6 +4,7 @@ import api from '../../common/api.js';
 import {localeGet} from '../../common/locale';
 
 export default {
+  backgroundColor: '#05050d', // the flashed background color for navigation between pages
   domain: __DEV__
     ? Platform.OS === 'web'
       ? 'http://' + location.hostname + ':8765'
