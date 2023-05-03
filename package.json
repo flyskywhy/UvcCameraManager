@@ -100,6 +100,7 @@
     "log4js": "1.1.1",
     "markdown": "0.5.0",
     "mime-types": "2.1.17",
+    "modal-enhanced-react-native-web": "0.2.0",
     "moment": "2.19.1",
     "mysql": "2.15.0",
     "mysql2": "1.4.2",
