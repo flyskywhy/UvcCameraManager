@@ -36,6 +36,7 @@ class Nav extends PureComponent {
           navView = (
             <Image
               source={nav.image || require('../images/common/btn_fanhui.png')}
+              style={styles.image}
             />
           );
         }
@@ -70,6 +71,10 @@ class Nav extends PureComponent {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: 20,
+    height: 20,
+  },
   nav: {
     backgroundColor: '#2D343B',
     borderBottomColor: 'rgba(0,0,0,0.03)',

@@ -22,32 +22,20 @@ class ConnectDevice extends PureComponent {
     this.password = '';
     this.id2 = 'Y00F340077ECC5507';
     this.sign = 'W9zdjDuBpv9Dx0VKpL7/0uT0B7fL/MUW';
+    this.navs = {
+      Left: {
+        image: require('../images/common/drawer.png'),
+        onPress: props.navigation.toggleDrawer,
+      },
+      Center: {
+        text: '连接设备',
+      },
+    };
     if (Platform.OS !== 'web') {
-      this.navs = {
-        Left: {
-          onPress: () => props.navigation.goBack(),
-        },
-        Center: {
-          text: '连接设备',
-        },
-        Right: {
-          image:
-            Platform.OS === 'web'
-              ? ''
-              : require('../images/common/icon_saoyisao.png'),
-          onPress: () =>
-            Platform.OS !== 'web' &&
-            props.navigation.navigate('QRCodes', {isConnectDevice: true}),
-        },
-      };
-    } else {
-      this.navs = {
-        Left: {
-          onPress: () => props.navigation.goBack(),
-        },
-        Center: {
-          text: '连接设备',
-        },
+      this.navs.Right = {
+        image: require('../images/common/icon_saoyisao.png'),
+        onPress: () =>
+          props.navigation.navigate('QRCodes', {isConnectDevice: true}),
       };
     }
   }
