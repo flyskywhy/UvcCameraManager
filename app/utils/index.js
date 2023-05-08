@@ -1,5 +1,34 @@
-import React from 'react';
-import {Linking} from 'react-native';
+import {Linking, Platform, Dimensions} from 'react-native';
+
+//iPhoneX
+const X_WIDTH = 375;
+const X_HEIGHT = 812;
+
+//iPhoneXR
+const XR_WIDTH = 414;
+const XR_HEIGHT = 896;
+
+//screen
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
+//判断是否是iPhoneX
+export function isIphoneX() {
+  return (
+    Platform.OS === 'ios' &&
+    ((SCREEN_HEIGHT === X_HEIGHT && SCREEN_WIDTH === X_WIDTH) ||
+      (SCREEN_HEIGHT === X_WIDTH && SCREEN_WIDTH === X_HEIGHT))
+  );
+}
+
+//判断是否是iPhoneXR
+export function isIphoneXR() {
+  return (
+    Platform.OS === 'ios' &&
+    ((SCREEN_HEIGHT === XR_HEIGHT && SCREEN_WIDTH === XR_WIDTH) ||
+      (SCREEN_HEIGHT === XR_WIDTH && SCREEN_WIDTH === XR_HEIGHT))
+  );
+}
 
 const colors = [
   '#E74C3C',

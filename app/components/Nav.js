@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   Image,
   Animated,
   Platform,
 } from 'react-native';
+import * as utils from '../utils';
 
 class Nav extends PureComponent {
   _renderNavContent() {
@@ -28,7 +28,10 @@ class Nav extends PureComponent {
         let navView = null;
         if (nav.text || nav.text === '') {
           navView = (
-            <Animated.Text accessibilityLabel={nav.text} style={text}>
+            <Animated.Text
+              accessibilityLabel={nav.text}
+              style={text}
+              numberOfLines={1}>
               {nav.text}
             </Animated.Text>
           );
@@ -43,20 +46,22 @@ class Nav extends PureComponent {
         if (nav.onPress) {
           return (
             <TouchableOpacity
+              accessibilityLabel={
+                '标题栏' + (position === 'Left' ? '左' : '右') + '按钮'
+              }
               key={position}
               onPress={nav.onPress}
-              style={[
-                styles['textFlex' + position],
-                {paddingTop: 0, paddingBottom: 0},
-              ]}>
+              style={styles['textFlex' + position]}>
               {navView}
             </TouchableOpacity>
           );
         } else {
           return (
-            <View key={position} style={styles['textFlex' + position]}>
+            <TouchableOpacity
+              key={position}
+              style={styles['textFlex' + position]}>
               {navView}
-            </View>
+            </TouchableOpacity>
           );
         }
       } else {
@@ -76,35 +81,63 @@ const styles = StyleSheet.create({
     height: 20,
   },
   nav: {
-    backgroundColor: '#2D343B',
-    borderBottomColor: 'rgba(0,0,0,0.03)',
+    backgroundColor: 'rgba(256,256,256,0.05)',
+    borderBottomColor: 'rgba(45,52,59,0.03)',
     borderBottomWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    height: Platform.OS === 'ios' ? 64 : 44,
-    paddingTop: Platform.OS === 'ios' ? 15 : 0,
+    height:
+      utils.isIphoneX() || utils.isIphoneXR()
+        ? 88
+        : Platform.OS === 'ios'
+        ? 64
+        : 44,
+    paddingTop:
+      utils.isIphoneX() || utils.isIphoneXR()
+        ? 44
+        : Platform.OS === 'ios'
+        ? 20
+        : 0,
   },
   navText: {
     color: 'rgba(255,255,255,0.9)',
     fontSize: 16,
   },
   textFlexLeft: {
-    flex: 3,
-    justifyContent: 'flex-start',
+    flex: 2,
+    justifyContent: 'center',
     alignItems: 'flex-start',
     paddingLeft: 15,
+    height:
+      utils.isIphoneX() || utils.isIphoneXR()
+        ? 44
+        : Platform.OS === 'ios'
+        ? 64
+        : 44,
   },
   textFlexCenter: {
     flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    height:
+      utils.isIphoneX() || utils.isIphoneXR()
+        ? 44
+        : Platform.OS === 'ios'
+        ? 64
+        : 44,
   },
   textFlexRight: {
-    flex: 3,
-    justifyContent: 'flex-end',
+    flex: 2,
+    justifyContent: 'center',
     alignItems: 'flex-end',
     paddingRight: 10,
     marginRight: 5,
+    height:
+      utils.isIphoneX() || utils.isIphoneXR()
+        ? 44
+        : Platform.OS === 'ios'
+        ? 64
+        : 44,
   },
 });
 
