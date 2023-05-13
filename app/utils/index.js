@@ -1,4 +1,5 @@
 import {Linking, Platform, Dimensions} from 'react-native';
+import _ from 'lodash';
 
 //iPhoneX
 const X_WIDTH = 375;
@@ -138,6 +139,24 @@ export function subString(str, len, hasDot) {
   return newStr;
 }
 
+//填充字符串，包括对于中文字符的处理;
+export function padEnd(str, len, padString) {
+  if (!str) {
+    return '';
+  }
+  let padStr = padString === undefined ? ' ' : padString;
+  let newStr = str;
+  let chineseRegex = /[^\x00-\xff]/g;
+  let strLength = str.replace(chineseRegex, '**').length;
+  if (strLength < len) {
+    let padLen = len - strLength;
+    for (let i = 0; i < padLen; i++) {
+      newStr += padStr;
+    }
+  }
+  return newStr;
+}
+
 //判断所有字符都是中文
 export function checkAllChinese(str) {
   var isAllChinese = true;
@@ -165,6 +184,27 @@ export function isImage(filepath) {
     return true;
   } else {
     return false;
+  }
+}
+
+export function getAliOssImageUrl(objectKey, bucket, region, m, h, w) {
+  if (h === 0 || w === 0) {
+    return 'http://' + bucket + '.' + region + '.aliyuncs.com/' + objectKey;
+  } else {
+    return (
+      'http://' +
+      bucket +
+      '.' +
+      region +
+      '.aliyuncs.com/' +
+      objectKey +
+      '?x-oss-process=image/resize,m_' +
+      m +
+      ',h_' +
+      h +
+      ',w_' +
+      w
+    );
   }
 }
 
@@ -197,11 +237,11 @@ function getRad(d) {
 
 //判断是不是数字
 export function isNum(data) {
-  var numData = Number(data);
-  if (!isNaN(numData)) {
+  if (parseFloat(data).toString() === 'NaN') {
+    return false;
+  } else {
     return true;
   }
-  return false;
 }
 
 //判断一个数是不是正整数
@@ -398,5 +438,57 @@ export function removeZoreAtTheEnd(str) {
     return str.substring(0, str.length - i - 1);
   } else {
     return str.substring(0, str.length - i);
+  }
+}
+
+export function padHexString(string) {
+  if (string.length === 1) {
+    return '0' + string;
+  } else {
+    return string;
+  }
+}
+
+export function hexString2ByteArray(string) {
+  let array = [];
+  [].map.call(string, (value, index, str) => {
+    if (index % 2 === 0) {
+      array.push(parseInt(value + str[index + 1], 16));
+    }
+  });
+
+  return array;
+}
+
+export function byteArray2HexString(bytes) {
+  return bytes
+    .map((byte) => this.padHexString((byte & 0xff).toString(16)))
+    .toString()
+    .replace(/,/g, '')
+    .toUpperCase();
+}
+
+export function byteArray2HexArray(bytes) {
+  return bytes
+    .map((byte) => this.padHexString((byte & 0xff).toString(16)))
+    .toString();
+}
+
+export function sleepMs(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function allocAddress(alloced, min, max) {
+  let all = [];
+  for (let i = min; i <= max; i++) {
+    all.push(i);
+  }
+
+  let available = _.difference(all, alloced);
+  let addr = available[0];
+  if (available.length && addr >= min && addr <= max) {
+    return addr;
+  } else {
+    return -1;
   }
 }
