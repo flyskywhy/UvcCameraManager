@@ -1,5 +1,6 @@
 import qs from 'query-string';
 import config from '../configs';
+
 // import fetch from 'react-native-fetch-polyfill';
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
 
@@ -21,7 +22,7 @@ function filterStatus(res) {
 }
 
 function networkError(res) {
-  res.statusText = '网络出现问题，请检查网络配置';
+  res.statusText = res.statusText || '网络出现问题，请检查网络配置';
   res.status = 404;
 
   let error = new Error(res.statusText);

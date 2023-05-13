@@ -35,7 +35,7 @@ export default function utilsMiddleware({dispatch}) {
               })
               .catch(() => {});
           } else {
-            dispatchToast(`网络连接错误【${payload.res.status}】`);
+            dispatchToast(`网络连接错误【${payload.res.statusText}】`);
           }
         }
       }
