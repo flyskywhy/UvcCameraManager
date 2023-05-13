@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, Dimensions, Animated} from 'react-native';
+import {StyleSheet, Text, Dimensions, Animated, Modal} from 'react-native';
 import PropTypes from 'prop-types';
 
 const defaultText = 'Toast';
@@ -29,10 +29,12 @@ class Toast extends Component {
   }
 
   show(text = defaultText, timeout = defaultTimeout) {
+    clearTimeout(this.timeout);
     const {duration} = this.props;
     Animated.timing(this.state.fadeAnim, {
       toValue: 1,
       duration: duration,
+      useNativeDriver: false,
     }).start();
 
     this.setState({
@@ -45,6 +47,7 @@ class Toast extends Component {
       Animated.timing(this.state.fadeAnim, {
         toValue: 0,
         duration: duration,
+        useNativeDriver: false,
       }).start(() => {
         this.setState({
           show: false,
@@ -63,19 +66,25 @@ class Toast extends Component {
       return null;
     }
     return (
-      <Animated.View
-        style={[
-          styles.container,
-          {
-            width: toastWidth,
-            left: (width - toastWidth) / 2,
-            top: (height - 60) / 2,
-          },
-          this.props.style,
-          opacity,
-        ]}>
-        <Text style={styles.text}>{this.state.text}</Text>
-      </Animated.View>
+      <Modal
+        animationType={'slide'}
+        visible={true}
+        transparent={true}
+        onRequestClose={() => {}}>
+        <Animated.View
+          style={[
+            styles.container,
+            {
+              width: toastWidth,
+              left: (width - toastWidth) / 2,
+              top: (height - 60) / 2,
+            },
+            this.props.style,
+            opacity,
+          ]}>
+          <Text style={styles.text}>{this.state.text}</Text>
+        </Animated.View>
+      </Modal>
     );
   }
 }
