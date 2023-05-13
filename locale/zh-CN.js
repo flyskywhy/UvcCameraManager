@@ -12,6 +12,14 @@ var ScreenModeInvalid = '不支持的业务模式';
 var NoPermissionToPerformOperation = '没有权限执行该操作';
 
 module.exports = {
+  Second: '秒',
+  GetVerificationCode: '获取验证码',
+  NetworkError: '网络出错，请检查网络配置',
+  Recapture: '重新获取',
+
+  //----------上为前端国际化------------------
+  //----------下为后端国际化------------------
+
   appLoginPOST_0: '手机号不能为空',
   appLoginPOST_1: '密码不能为空',
   appLoginPOST_2: '手机号或密码不正确',

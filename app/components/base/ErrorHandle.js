@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import PropTypes from 'prop-types';
+import config from '../../configs';
 
 class ErrorHandle extends Component {
   static propTypes = {
@@ -10,8 +11,8 @@ class ErrorHandle extends Component {
   };
 
   static defaultProps = {
-    infoText: '网络出错啦, 请点击按钮重新加载',
-    buttonText: '重新获取',
+    infoText: config.localeGet(config.locale, 'NetworkError'),
+    buttonText: config.localeGet(config.locale, 'Recapture'),
   };
 
   render() {

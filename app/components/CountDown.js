@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {TouchableOpacity, Text, AppState, View} from 'react-native';
 
 import * as utils from '../utils';
+import config from '../configs';
 
 class CountDown extends PureComponent {
   constructor(props) {
@@ -39,7 +40,9 @@ class CountDown extends PureComponent {
         0,
       );
     }
-    this.setState({appState: nextAppState});
+    this.setState({
+      appState: nextAppState,
+    });
   };
 
   setCountdown(countdown) {
@@ -92,11 +95,16 @@ class CountDown extends PureComponent {
       <View style={style}>
         {this.state.disabled ? (
           <View>
-            <Text style={vcodeTextStyle}>{`${this.state.countdown}`}秒</Text>
+            <Text style={vcodeTextStyle}>
+              {`${this.state.countdown}`}
+              {config.localeGet(config.locale, 'Second')}
+            </Text>
           </View>
         ) : (
           <TouchableOpacity onPress={onPress}>
-            <Text style={vcodeTextStyle}>获取验证码</Text>
+            <Text style={vcodeTextStyle}>
+              {config.localeGet(config.locale, 'GetVerificationCode')}
+            </Text>
           </TouchableOpacity>
         )}
       </View>
