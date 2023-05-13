@@ -10,7 +10,7 @@ export default function utilsMiddleware({dispatch}) {
     };
 
     // error handle
-    if (error && payload.type === 'http') {
+    if (error && payload && payload.type === 'http') {
       if (payload.res.status === 451) {
       } else if (payload.res.status === 403) {
         dispatch(utilsActions.forbidden403());
