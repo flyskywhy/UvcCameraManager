@@ -117,6 +117,7 @@
     "query-string": "4.3.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-fast-compare": "3.2.0",
     "react-native": "0.63.2",
     "react-native-check-box": "2.1.7",
     "react-native-gesture-handler": "1.10.3",
