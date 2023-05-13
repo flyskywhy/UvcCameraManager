@@ -16,31 +16,31 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      domainChecked: false,
+      prepared: false,
     };
     AsyncStorage.getItem('localPersistence')
       .then(
         (value) => {
           config.domain = JSON.parse(value).serverAddr;
           this.setState({
-            domainChecked: true,
+            prepared: true,
           });
         },
         () => {
           this.setState({
-            domainChecked: true,
+            prepared: true,
           });
         },
       )
       .catch(() => {
         this.setState({
-          domainChecked: true,
+          prepared: true,
         });
       });
   }
 
   render() {
-    return this.state.domainChecked ? (
+    return this.state.prepared ? (
       <Provider store={store}>
         <Navigation />
       </Provider>
