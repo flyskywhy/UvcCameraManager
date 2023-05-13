@@ -10,8 +10,21 @@ const initialState = {
   forbidden403: null,
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
+  is18x9: is18x9(
+    Dimensions.get('window').width,
+    Dimensions.get('window').height,
+  ),
   isPortrait: Dimensions.get('window').width < Dimensions.get('window').height,
 };
+
+// 是否是全面屏手机
+function is18x9(x, y) {
+  if (x < y) {
+    return y / x > 17 / 9;
+  } else {
+    return x / y > 17 / 9;
+  }
+}
 
 export default function (state = initialState, action) {
   const {payload = {}} = action;
