@@ -1,4 +1,5 @@
 import {AppRegistry} from 'react-native';
-import ReactWebNative8Koa from './app/index';
+import App from './app/index';
+import {name as appName} from './app.json';
 
-AppRegistry.registerComponent('ReactWebNative8Koa', () => ReactWebNative8Koa);
+AppRegistry.registerComponent(appName, () => App);

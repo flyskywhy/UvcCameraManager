@@ -2,10 +2,11 @@ import 'babel-polyfill';
 import 'fetch-detector';
 import 'fetch-ie8';
 import {AppRegistry} from 'react-native';
-import ReactWebNative8Koa from './app/';
+import App from './app/';
+import {name as appName} from './app.json';
 
-AppRegistry.registerComponent('ReactWebNative8Koa', () => ReactWebNative8Koa);
+AppRegistry.registerComponent(appName, () => App);
 
-AppRegistry.runApplication('ReactWebNative8Koa', {
+AppRegistry.runApplication(appName, {
   rootTag: document.getElementById('root'),
 });
