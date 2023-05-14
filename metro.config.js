@@ -4,7 +4,7 @@
  *
  * @format
  */
-const blacklist = require('metro-config/src/defaults/blacklist');
+const exclusionList = require('metro-config/src/defaults/exclusionList');
 
 module.exports = {
   transformer: {
@@ -18,7 +18,7 @@ module.exports = {
   resolver: {
     assetExts: ['dds', 'txt', 'jpg', 'png'],
     sourceExts: ['js', 'json', 'ts', 'tsx', 'jsx'],
-    blacklistRE: blacklist([
+    blockList: exclusionList([
       // to avoid error below when `npm run web-clean` besides `npm run rn` on Windows
       //events.js:174
       //       throw er; // Unhandled 'error' event
