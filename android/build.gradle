@@ -40,6 +40,8 @@ allprojects {
         //       > Could not get resource 'https://repo.maven.apache.org/maven2/com/google/guava/guava/17.0/guava-17.0.jar'.
         //          > Read timed out
         maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
 
         exclusiveContent {
             filter {
@@ -59,11 +61,6 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
-
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
-
         google()
         maven { url 'https://www.jitpack.io' }
     }
