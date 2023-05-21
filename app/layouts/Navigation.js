@@ -2,11 +2,11 @@ import React, {PureComponent} from 'react';
 import {
   BackHandler,
   StyleSheet,
-  View,
   Platform,
   StatusBar,
   ToastAndroid,
 } from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {setRootViewBackgroundColor} from '@kingstinct/react-native-root-view-background';
 import {connect} from 'react-redux';
 import * as UtilsComponent from './Utils';
@@ -60,7 +60,7 @@ class Navigation extends PureComponent {
 
   render() {
     return (
-      <View style={styles.container}>
+      <GestureHandlerRootView style={styles.container}>
         <StatusBar
           backgroundColor="black"
           barStyle="light-content"
@@ -68,7 +68,7 @@ class Navigation extends PureComponent {
         />
         <AppNavigatorWithNavState />
         <Utils />
-      </View>
+      </GestureHandlerRootView>
     );
   }
 }

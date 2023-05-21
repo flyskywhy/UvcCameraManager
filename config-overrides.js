@@ -8,6 +8,9 @@ module.exports = {
     // To let alias like 'react-native/Libraries/Components/StaticRenderer'
     // take effect, must set it before alias 'react-native'
     delete config.resolve.alias['react-native'];
+    config.resolve.alias['react-native/package.json'] = path.resolve(
+      'node_modules/react-native/package.json',
+    );
     config.resolve.alias['react-native/Libraries/Components/StaticRenderer'] =
       'react-native-web/dist/vendor/react-native/StaticRenderer';
     config.resolve.alias['react-native'] = path.resolve(
