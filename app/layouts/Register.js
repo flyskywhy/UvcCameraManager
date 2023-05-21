@@ -17,7 +17,7 @@ import * as utils from '../utils';
 import RegisterOrForgetPwd from './RegisterOrForgetPwd';
 import ActivityIndicatorModal from '../components/ActivityIndicatorModal';
 import config from '../configs';
-import CheckBox from 'react-native-check-box';
+import CheckBox from '@chainsoft/react-native-checkbox';
 
 const url = config.license;
 

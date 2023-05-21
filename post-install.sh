@@ -18,6 +18,11 @@ sed -i -e "s/fs.readFileSync(this._options.private_key)/this._options.private_ke
 echo patching react-native-root-view-background
 sed -i -e "s/compile /implementation /g" node_modules/@kingstinct/react-native-root-view-background/android/build.gradle
 
+echo patching react-navigation-drawer
+# ref to https://stackoverflow.com/a/69690914
+# TODO: remove this after upgrade react-navigation
+sed -i -e "s/interpolate,/interpolateNode,/g" -e "s/interpolate(/interpolateNode(/g" node_modules/react-navigation-drawer/lib/module/views/Drawer.js
+
 echo patching passport-weixin
 sed -i -e "s/openid;/openid + \'\&lang=zh_CN\';/g" node_modules/passport-weixin/lib/strategy.js
 

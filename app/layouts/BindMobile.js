@@ -15,7 +15,7 @@ import * as utils from '../utils';
 import BindMobileView from './BindMobileView';
 import config from '../configs';
 import ActivityIndicatorModal from '../components/ActivityIndicatorModal';
-import CheckBox from 'react-native-check-box';
+import CheckBox from '@chainsoft/react-native-checkbox';
 
 const url = config.license;
 
