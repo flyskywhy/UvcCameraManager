@@ -5,19 +5,6 @@ const path = require('path');
 
 module.exports = {
   webpack: function (config, env) {
-    // To enable the eslint rules in '.eslintrc.js'
-    config.module.rules[1].use[0].options.baseConfig.extends = [
-      path.resolve('.eslintrc.js'),
-    ];
-
-    // To avoid sometimes react-app-rewired is not honouring your change to the eslint rules
-    // in '.eslintrc.js', you should manually disable the eslint cache, ref to
-    // https://github.com/facebook/create-react-app/issues/9007#issuecomment-628601097
-    config.module.rules[1].use[0].options.cache = false;
-
-    // To enable '.eslintignore'
-    config.module.rules[1].use[0].options.ignore = true;
-
     // To let alias like 'react-native/Libraries/Components/StaticRenderer'
     // take effect, must set it before alias 'react-native'
     delete config.resolve.alias['react-native'];
@@ -35,23 +22,50 @@ module.exports = {
       }),
     );
 
-    // Keep all rules except the eslint - note that if they add additional rules this will need updating to match
-    // Consider if this should only apply to the development environment? If so, uncomment the if statement
-    // if (env === 'development') {
-      config.module.rules.splice(1, 1);
-    // }
-
-    // Need this rule to prevent `Attempted import error: 'SOME' is not exported from` when `react-app-rewired build`
-    // Need this rule to prevent `TypeError: Cannot assign to read only property 'exports' of object` when `react-app-rewired start`
-    config.module.rules.push({
-      test: /\.(js|tsx?)$/,
-      // You can exclude the exclude property if you don't want to keep adding individual node_modules
-      // just keep an eye on how it effects your build times, for this example it's negligible
-      // exclude: /node_modules[/\\](?!@react-navigation|react-native-gesture-handler|react-native-screens)/,
-      use: {
-        loader: 'babel-loader',
-      },
+    // if meet `BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.` ,
+    // then you need some of below, ref to
+    // https://stackoverflow.com/questions/64557638/how-to-polyfill-node-core-modules-in-webpack-5
+    const fallback = config.resolve.fallback || {};
+    Object.assign(fallback, {
+      // crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify'),
+      // assert: require.resolve('assert'),
+      // http: require.resolve('stream-http'),
+      // https: require.resolve('https-browserify'),
+      // os: require.resolve('os-browserify'),
+      // url: require.resolve('url')
     });
+    config.resolve.fallback = fallback;
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        process: 'process/browser',
+        // Buffer: ['buffer', 'Buffer'],
+      }),
+    );
+
+    // if meet
+    //     ERROR in ./node_modules/react-native-tab-view/lib/module/TabBarIndicator.js 25:48-68
+    //     export 'default'.'interpolate' (imported as 'Animated') was not found in 'react-native-reanimated'
+    // just like https://github.com/software-mansion/react-native-reanimated/issues/3614 ,
+    // then you need set strictExportPresence below to false to switch ERROR to WARNING
+    config.module.strictExportPresence = false;
+
+    // ref to node_modules/react-scripts/config/webpack.config.js
+    let applicationRule = config.module.rules[1].oneOf[3];
+
+    // with webpack@5 , will cause `Attempted import error: '@canvas/image-data/index' does not contain a
+    // default export (imported as 'ImageData').` if not define below, that's `import ImageData from '@canvas/image-data/index';`
+    // in `node_modules/@flyskywhy/react-native-browser-polyfill/src/window.js`
+    applicationRule.options.sourceType = 'unambiguous';
+
+    if (env === 'production') {
+      // with webpack@5 , will cause `BREAKING CHANGE: The request './setPrototypeOf' failed to resolve only
+      // because it was resolved as fully specified` if not define below, ref to
+      // https://stackoverflow.com/a/69255531/6318705
+      applicationRule.resolve = {
+        fullySpecified: false,
+      };
+    }
 
     return config;
   },
