@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "31.0.0"
+        buildToolsVersion = "33.0.0"
 
         // D8: Cannot fit requested classes in a single dex file (# methods: 71398 > 65536)
         // com.android.builder.dexing.DexArchiveMergerException: Error while merging dex archives:
@@ -10,8 +10,8 @@ buildscript {
         // Learn how to resolve this issue at https://developer.android.com/tools/building/multidex.html
         minSdkVersion = 24
 
-        compileSdkVersion = 31
-        targetSdkVersion = 31
+        compileSdkVersion = 33
+        targetSdkVersion = 33
 
         if (System.properties['os.arch'] == "aarch64") {
             // For M1 Users we need to use the NDK 24 which added support for aarch64

@@ -161,6 +161,9 @@ android {
         }
 
         // multiDexEnabled true
+
+        // needed by react-native-image-crop-picker
+        vectorDrawables.useSupportLibrary = true
     }
 
     if (isNewArchitectureEnabled()) {
