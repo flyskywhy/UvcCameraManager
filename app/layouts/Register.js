@@ -299,7 +299,7 @@ class Register extends PureComponent {
                   <Text style={styles.inputHint}>
                     我已阅读并同意
                     <Text style={styles.protocolText} onPress={this.toWebView}>
-                      ReactWebNative8Koa 软件许可及服务协议
+                      UvcCameraManager 软件许可及服务协议
                     </Text>
                   </Text>
                 </View>

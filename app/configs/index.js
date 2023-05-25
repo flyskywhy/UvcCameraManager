@@ -8,10 +8,10 @@ export default {
   domain: __DEV__
     ? Platform.OS === 'web'
       ? 'http://' + location.hostname + ':8765'
-      : 'http://ReactWebNative8Koa.com:447'
+      : 'http://UvcCameraManager.com:447'
     : Platform.OS === 'web'
     ? ''
-    : 'http://ReactWebNative8Koa.com',
+    : 'http://UvcCameraManager.com',
   api,
   locale:
     Platform.OS === 'web'
@@ -21,5 +21,5 @@ export default {
   uploadMax: 100 * 1024 * 1024, // related to client_max_body_size in scripts/nginx.conf
   replySuffix: '\nFrom ' + Platform.OS,
   package: packageJson,
-  license: 'http://ReactWebNative8Koa.com/xieyi.html',
+  license: 'http://UvcCameraManager.com/xieyi.html',
 };

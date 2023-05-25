@@ -54,7 +54,7 @@ class About extends PureComponent {
           <Nav navs={this.navs} />
           <View style={styles.content}>
             <Text style={styles.title}>
-              ReactWebNative8Koa
+              UvcCameraManager
               <Text onPress={this.tap} style={styles.versionText}>
                 {' v' + config.package.version}
               </Text>
@@ -63,7 +63,7 @@ class About extends PureComponent {
               sha
               <Text style={styles.gitShaText}>{config.package.gitSha}</Text>
             </Text>
-            <Text style={styles.subTitle}>ReactWebNative8Koa</Text>
+            <Text style={styles.subTitle}>UvcCameraManager</Text>
             <Text style={styles.subTitle}>{this.state.backendVer}</Text>
             <Text style={styles.subTitle}>{config.domain}</Text>
           </View>
