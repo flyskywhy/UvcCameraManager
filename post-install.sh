@@ -23,6 +23,10 @@ echo patching react-navigation-drawer
 # TODO: remove this after upgrade react-navigation
 sed -i -e "s/interpolate,/interpolateNode,/g" -e "s/interpolate(/interpolateNode(/g" node_modules/react-navigation-drawer/lib/module/views/Drawer.js
 
+echo patching react-native-camera
+# TODO: remove this after switch to react-native-vision-camera
+sed -i -e "/ViewPropTypes/d" node_modules/react-native-camera/src/RNCamera.js
+
 echo patching passport-weixin
 sed -i -e "s/openid;/openid + \'\&lang=zh_CN\';/g" node_modules/passport-weixin/lib/strategy.js
 
