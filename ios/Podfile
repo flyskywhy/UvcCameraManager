@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'ReactWebNative8Koa' do
+target 'UVCcameramanager' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -45,7 +45,7 @@ target 'ReactWebNative8Koa' do
   # pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   # pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
 
-  target 'ReactWebNative8KoaTests' do
+  target 'UVCcameramanagerTests' do
     inherit! :complete
     # Pods for testing
   end

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ReactWebNative8Koa.app"
-               BlueprintName = "ReactWebNative8Koa"
-               ReferencedContainer = "container:ReactWebNative8Koa.xcodeproj">
+               BuildableName = "UVCcameramanager.app"
+               BlueprintName = "UVCcameramanager"
+               ReferencedContainer = "container:UVCcameramanager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ReactWebNative8KoaTests.xctest"
-               BlueprintName = "ReactWebNative8KoaTests"
-               ReferencedContainer = "container:ReactWebNative8Koa.xcodeproj">
+               BuildableName = "UVCcameramanagerTests.xctest"
+               BlueprintName = "UVCcameramanagerTests"
+               ReferencedContainer = "container:UVCcameramanager.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ReactWebNative8Koa.app"
-            BlueprintName = "ReactWebNative8Koa"
-            ReferencedContainer = "container:ReactWebNative8Koa.xcodeproj">
+            BuildableName = "UVCcameramanager.app"
+            BlueprintName = "UVCcameramanager"
+            ReferencedContainer = "container:UVCcameramanager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ReactWebNative8Koa.app"
-            BlueprintName = "ReactWebNative8Koa"
-            ReferencedContainer = "container:ReactWebNative8Koa.xcodeproj">
+            BuildableName = "UVCcameramanager.app"
+            BlueprintName = "UVCcameramanager"
+            ReferencedContainer = "container:UVCcameramanager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

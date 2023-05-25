@@ -1,4 +1,4 @@
-package com.reactwebnative8koa.newarchitecture;
+package com.flyskywhy.uvccameramanager.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.reactwebnative8koa.BuildConfig;
-import com.reactwebnative8koa.newarchitecture.components.MainComponentsRegistry;
-import com.reactwebnative8koa.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.flyskywhy.uvccameramanager.BuildConfig;
+import com.flyskywhy.uvccameramanager.newarchitecture.components.MainComponentsRegistry;
+import com.flyskywhy.uvccameramanager.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

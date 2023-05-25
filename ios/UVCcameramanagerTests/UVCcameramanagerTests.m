@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface ReactWebNative8KoaTests : XCTestCase
+@interface UVCcameramanagerTests : XCTestCase
 
 @end
 
-@implementation ReactWebNative8KoaTests
+@implementation UVCcameramanagerTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

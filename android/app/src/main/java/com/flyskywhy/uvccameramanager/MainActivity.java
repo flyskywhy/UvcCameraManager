@@ -1,4 +1,4 @@
-package com.reactwebnative8koa;
+package com.flyskywhy.uvccameramanager;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "ReactWebNative8Koa";
+    return "UVC camera manager";
   }
 
   /**

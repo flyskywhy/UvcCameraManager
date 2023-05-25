@@ -1,5 +1,5 @@
 {
-  "name": "ReactWebNative8Koa",
+  "name": "uvccameramanager",
   "version": "1.0.0-0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "web-clean": "rimraf node_modules/.cache/default-development",
     "web-fresh": "rm -fr node_modules/.cache/*; PLATFORM_OS=web DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
     "build-web": "cross-env PLATFORM_OS=web DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
-    "build-web-ReactWebNative8Koa": "cross-env PUBLIC_URL=/ReactWebNative8Koa PLATFORM_OS=web DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
+    "build-web-uvccameramanager": "cross-env PUBLIC_URL=/uvccameramanager PLATFORM_OS=web DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
     "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "build-ios": "react-native unbundle --entry-file index.ios.js --bundle-output main.jsbundle --platform ios --dev false",
     "install-android": "cross-env ./android/gradlew installRelease -p ./android/",
