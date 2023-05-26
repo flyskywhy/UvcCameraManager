@@ -15,6 +15,7 @@ import UserCenterPressedIcon from '../images/common/tab_gerenzhongxini_h.png';
 
 // 请按字母排序以方便人工检索
 import * as About from '../layouts/About';
+import * as Camera from '../layouts/Camera';
 import * as ConnectDevice from '../layouts/ConnectDevice';
 import * as Drawer from '../layouts/Drawer';
 import * as Device from '../layouts/Device';
@@ -50,6 +51,9 @@ const StackRouteConfigs = {
   },
   ConnectDevice: {
     screen: connectComponent(ConnectDevice),
+  },
+  Camera: {
+    screen: connectComponent(Camera),
   },
   Device: {
     screen: connectComponent(Device),
@@ -96,7 +100,7 @@ const StackRouteConfigs = {
 };
 
 const StackNavigatorConfigs = {
-  initialRouteName: 'ConnectDevice', // 初始化哪个界面为根界面
+  initialRouteName: 'Camera', // 初始化哪个界面为根界面
   mode: 'card', // 跳转方式：默认的 card ，在 iOS 上是从右到左跳转，在 Android 上是从下到上，都是使用原生系统的默认跳转方式
   headerMode: 'screen', // 导航条动画效果： float 表示会渐变，类似于 iOS 的原生效果， screen 表示没有渐变， none 表示隐藏导航条
   defaultNavigationOptions: {

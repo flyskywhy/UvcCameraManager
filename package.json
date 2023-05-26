@@ -44,6 +44,7 @@
     "@flyskywhy/react-native-locale-detector": "1.0.7",
     "@flyskywhy/react-native-smart-barcode": "1.2.3",
     "@kingstinct/react-native-root-view-background": "1.0.3",
+    "@react-native-camera-roll/camera-roll": "5.5.0",
     "@react-native-community/async-storage": "1.12.0",
     "@react-native-community/masked-view": "0.1.10",
     "acl": "0.4.11",
