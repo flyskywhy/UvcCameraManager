@@ -164,9 +164,6 @@ android {
 
         // needed by react-native-image-crop-picker
         vectorDrawables.useSupportLibrary = true
-
-        // needed by react-native-camera
-        missingDimensionStrategy 'react-native-camera', 'mlkit'
     }
 
     if (isNewArchitectureEnabled()) {

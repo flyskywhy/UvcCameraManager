@@ -1,4 +1,16 @@
-# UvcCameraManager
+# UvcCameraManager base on [react-native-uvc-camera](https://github.com/flyskywhy/react-native-uvc-camera)
+
+## Quickly usage
+
+Add `android/local.properties` , `android-ndk` need just `r14b` in [NDK Archives](https://developer.android.google.cn/ndk/downloads/older_releases), e.g.
+```
+# must be absolute path, otherwise will got
+# `Task ':libuvccamera:ndkBuild' is not up-to-date because: Task has not declared any outputs despite executing actions`
+ndk.dir=D\:\\proj\\tools\\android-ndk-r14b
+```
+On Windows, you need manually do what sed do in `post-install.sh` with `react-native-root-view-background` and `react-navigation-drawer`.
+
+## For junior user, read below
 
 ## Windows 所需安装的工具
 Python 2.7；.Net Framework 2 或 3；Visual Studio 2005 或更高。

@@ -3,6 +3,11 @@ apply from: file("../node_modules/@react-native-community/cli-platform-android/n
 include ':app'
 includeBuild('../node_modules/react-native-gradle-plugin')
 
+include ':usbCameraCommon'
+project(':usbCameraCommon').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uvc-camera/usbCameraCommon')
+include ':libuvccamera'
+project(':libuvccamera').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-uvc-camera/libuvccamera')
+
 if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {
     include(":ReactAndroid")
     project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
@@ -26,6 +31,12 @@ dependencyResolutionManagement {
     //          > Read timed out
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        // for react-native-uvc-camera
+        maven {
+            url 'https://raw.github.com/saki4510t/libcommon/master/repository/'
+            // allowInsecureProtocol = true
+        }
+
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/central' }
