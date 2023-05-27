@@ -155,7 +155,7 @@
     "zrender": "3.6.3"
   },
   "devDependencies": {
-    "@react-native-community/eslint-config": "^2.0.0",
+    "@react-native-community/eslint-config": "3.2.0",
     "babel-polyfill": "6.26.0",
     "codeceptjs": "git+https://github.com/flyskywhy/CodeceptJS#a6aa9bb",
     "cross-env": "^7.0.3",
