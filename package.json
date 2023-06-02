@@ -1,6 +1,6 @@
 {
   "name": "uvccameramanager",
-  "version": "1.0.0-0",
+  "version": "2.0.0-0",
   "private": true,
   "scripts": {
     "rn": "adb reverse tcp:8081 tcp:8081; node node_modules/react-native/local-cli/cli.js start",
